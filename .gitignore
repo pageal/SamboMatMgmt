@@ -45,3 +45,20 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+*.suo
+*.exe
+SamboMatMgmt/bin/Debug/SamboMatMgmt.exe.config
+*.pdb
+SamboMatMgmt/bin/Debug/SamboMatMgmt.vshost.exe.config
+SamboMatMgmt/bin/Debug/SamboMatMgmt.vshost.exe.manifest
+SamboMatMgmt/bin/Debug/start.jpg
+SamboMatMgmt/bin/Debug/stop.jpg
+SamboMatMgmt/bin/Release/SamboMatMgmt.vshost.exe.config
+SamboMatMgmt/bin/Release/SamboMatMgmt.vshost.exe.manifest
+SamboMatMgmt/obj/Debug/App.g.i.cs
+SamboMatMgmt/obj/Debug/GeneratedInternalTypeHelper.g.i.cs
+SamboMatMgmt/obj/Debug/App.g.cs
+SamboMatMgmt/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+SamboMatMgmt/obj/Debug/MainWindow.baml
+SamboMatMgmt/obj/Debug/MainWindow.g.cs
+SamboMatMgmt/obj/Debug/MainWindow.g.i.cs

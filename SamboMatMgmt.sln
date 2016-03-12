@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SamboMatMgmt", "SamboMatMgmt\SamboMatMgmt.csproj", "{77969CF0-D6D9-426B-945D-BBAD47486C7A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		CD_ROM|Any CPU = CD_ROM|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		DVD-5|Any CPU = DVD-5|Any CPU
+		Release|Any CPU = Release|Any CPU
+		SingleImage|Any CPU = SingleImage|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{77969CF0-D6D9-426B-945D-BBAD47486C7A}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{77969CF0-D6D9-426B-945D-BBAD47486C7A}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
+		{77969CF0-D6D9-426B-945D-BBAD47486C7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77969CF0-D6D9-426B-945D-BBAD47486C7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77969CF0-D6D9-426B-945D-BBAD47486C7A}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{77969CF0-D6D9-426B-945D-BBAD47486C7A}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
+		{77969CF0-D6D9-426B-945D-BBAD47486C7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77969CF0-D6D9-426B-945D-BBAD47486C7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77969CF0-D6D9-426B-945D-BBAD47486C7A}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{77969CF0-D6D9-426B-945D-BBAD47486C7A}.SingleImage|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,47 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SamboMatMgmt"
+        xmlns:Properties="clr-namespace:SamboMatMgmt.Properties" x:Class="SamboMatMgmt.MainWindow"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="896.213" Width="1328.409">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="129*"/>
+            <ColumnDefinition Width="1054*"/>
+        </Grid.ColumnDefinitions>
+        <Grid x:Name="ScoreGrid" Margin="10,10,10,10" HorizontalAlignment="Stretch" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Rectangle Grid.Column="0" Fill="Red" HorizontalAlignment="Stretch"/>
+            <Rectangle Grid.Column="1" Fill="Black" HorizontalAlignment="Stretch"/>
+            <Rectangle Grid.Column="2" Fill="Blue" HorizontalAlignment="Stretch"/>
+            <Button Grid.Column="1" Margin="10,10,10,10" VerticalAlignment="Top" HorizontalAlignment="Center" Height="80" Width="80" IsDefault="True" Name="buttonPlay" Command="{Binding PlayCommand}" CommandParameter="{Binding ElementName=ButtonImage, Path=Source}" >
+                <Image Name="ButtonImage">
+                    <Image.Style>
+                        <Style TargetType="{x:Type Image}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding isPlaying}" Value="True">
+                                    <Setter Property="Source" Value="stop.jpg" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding isPlaying}" Value="False">
+                                    <Setter Property="Source" Value="start.jpg" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+            </Button>
+            <ComboBox x:Name="BattleTime" Grid.Column="1" HorizontalAlignment="Center" Margin="10,110,10,10" IsEditable="True" VerticalAlignment="Top" Width="100" FontSize="16" FontWeight="Bold" LostFocus="FightTime_LostFocus"/>
+            <Label x:Name="labelCompetitorRed" Content="Competitor:" Grid.Column="0" Margin="10,10,10,10" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="16" FontFamily="Arial" FontWeight="Bold"/>
+            <ComboBox x:Name="ComboCompetitorRed" Grid.Column="0" Margin="150,10,10,10" VerticalAlignment="Top" HorizontalAlignment="Stretch" IsEditable="True" FontWeight="Bold" FontSize="16" FontFamily="Arial" SelectionChanged="ComboCompetitorRed_SelectionChanged" LostFocus="ComboCompetitorRed_LostFocus"/>
+            <Label x:Name="labelCompetitorBlue" Content="Competitor:" Grid.Column="2" Margin="10,10,10,10" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" FontSize="16" FontFamily="Arial"/>
+            <ComboBox x:Name="ComboCompetitorBlue" Grid.Column="2" Margin="150,10,10,10" VerticalAlignment="Top" HorizontalAlignment="Stretch" IsEditable="True" FontWeight="Bold" FontSize="16" FontFamily="Arial" LostFocus="ComboCompetitorBlue_LostFocus"/>
+        </Grid>
+    </Grid>
+</Window>
