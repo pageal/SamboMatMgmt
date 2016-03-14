@@ -62,6 +62,31 @@ namespace SamboMatMgmt
                 //comboBox.SelectedItem = newItem;
             }
         }
+
+        private void OnRedScoreReset(object sender, RoutedEventArgs e)
+        {
+            _ViewModel.OnRedScoreReset(Convert.ToInt32(textBoxRedReset.Text));
+        }
+
+        private void OnRedPlus1(object sender, RoutedEventArgs e)
+        {
+            _ViewModel.OnRedScorePlus(Convert.ToInt32(textBoxRedPlus1.Text));
+        }
+
+        private void OnRedScorePlus2(object sender, RoutedEventArgs e)
+        {
+            _ViewModel.OnRedScorePlus(Convert.ToInt32(textBoxRedPlus2.Text));
+        }
+
+        private void OnRedScorePlus4(object sender, RoutedEventArgs e)
+        {
+            _ViewModel.OnRedScorePlus(Convert.ToInt32(textBoxRedPlus4.Text));
+        }
+
+        private void OnRedScoreMinus1(object sender, RoutedEventArgs e)
+        {
+            _ViewModel.OnRedScoreMinus(Convert.ToInt32(textBoxRedMinus1.Text));
+        }
     }
 
 
@@ -188,6 +213,29 @@ namespace SamboMatMgmt
 
             _the_time = new DateTime(_FightTime * 10000000);
             CurrentTime = _the_time.ToString("mm:ss");
+        }
+
+        public void OnRedScoreReset(int val)
+        {
+            _score_red = val;
+            OnPropertyChanged("ScoreRed");
+
+        }
+
+        public void OnRedScorePlus(int increment)
+        {
+            _score_red += increment;
+            OnPropertyChanged("ScoreRed");
+
+        }
+
+        public void OnRedScoreMinus(int increment)
+        {
+            _score_red -= increment;
+            if (_score_red < 0)
+                _score_red = 0;
+            OnPropertyChanged("ScoreRed");
+
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

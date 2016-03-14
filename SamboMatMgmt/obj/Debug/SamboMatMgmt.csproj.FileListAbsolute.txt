@@ -13,3 +13,4 @@ C:\Users\pgesyuk\documents\visual studio 2015\Projects\SamboMatMgmt\SamboMatMgmt
 C:\Users\pgesyuk\documents\visual studio 2015\Projects\SamboMatMgmt\SamboMatMgmt\obj\Debug\SamboMatMgmt.csproj.GenerateResource.Cache
 C:\Users\pgesyuk\documents\visual studio 2015\Projects\SamboMatMgmt\SamboMatMgmt\obj\Debug\SamboMatMgmt.exe
 C:\Users\pgesyuk\documents\visual studio 2015\Projects\SamboMatMgmt\SamboMatMgmt\obj\Debug\SamboMatMgmt.pdb
+C:\Users\pgesyuk\documents\visual studio 2015\Projects\SamboMatMgmt\SamboMatMgmt\obj\Debug\SamboMatMgmt.csprojResolveAssemblyReference.cache

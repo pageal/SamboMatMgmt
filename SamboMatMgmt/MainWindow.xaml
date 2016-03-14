@@ -61,31 +61,31 @@
                         </Grid.ColumnDefinitions>
 
                         <TextBox x:Name="textBoxRedPlus1" Grid.Column="0" HorizontalAlignment="Left" FontSize="16"  Margin="10,10,10,10" TextWrapping="NoWrap" Text="1" VerticalAlignment="Top" Width="50"/>
-                        <Button x:Name="buttonRedPlus1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,40,10,0">
+                        <Button x:Name="buttonRedPlus1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,40,10,0" Click="OnRedPlus1">
                             <StackPanel>
                                 <Image Source="plus.jpg"/>
                             </StackPanel>
                         </Button>
-                        <TextBox x:Name="textBox2" Grid.Column="1" HorizontalAlignment="Left" FontSize="16"  Margin="10,10,0,0" TextWrapping="NoWrap" Text="2" VerticalAlignment="Top" Width="50"/>
-                        <Button x:Name="buttonRedPlus2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,40,10,0">
+                        <TextBox x:Name="textBoxRedPlus2" Grid.Column="1" HorizontalAlignment="Left" FontSize="16"  Margin="10,10,0,0" TextWrapping="NoWrap" Text="2" VerticalAlignment="Top" Width="50"/>
+                        <Button x:Name="buttonRedPlus2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,40,10,0" Click="OnRedScorePlus2">
                             <StackPanel>
                                 <Image Source="plus.jpg"/>
                             </StackPanel>
                         </Button>
-                        <TextBox x:Name="textBox3" Grid.Column="2" HorizontalAlignment="Left" FontSize="16"  Margin="10,10,0,0" TextWrapping="NoWrap" Text="4" VerticalAlignment="Top" Width="50"/>
-                        <Button x:Name="buttonRedPlus4" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,40,10,0">
+                        <TextBox x:Name="textBoxRedPlus4" Grid.Column="2" HorizontalAlignment="Left" FontSize="16"  Margin="10,10,0,0" TextWrapping="NoWrap" Text="4" VerticalAlignment="Top" Width="50"/>
+                        <Button x:Name="buttonRedPlus4" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,40,10,0" Click="OnRedScorePlus4">
                             <StackPanel>
                                 <Image Source="plus.jpg"/>
                             </StackPanel>
                         </Button>
-                        <TextBox x:Name="textBoxMinus1" Grid.Column="4" HorizontalAlignment="Left" FontSize="16"  Margin="10,10,0,0" TextWrapping="NoWrap" Text="1" VerticalAlignment="Top" Width="50"/>
-                        <Button x:Name="buttonRedMinus1" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,40,10,0">
+                        <TextBox x:Name="textBoxRedMinus1" Grid.Column="4" HorizontalAlignment="Left" FontSize="16"  Margin="10,10,0,0" TextWrapping="NoWrap" Text="1" VerticalAlignment="Top" Width="50"/>
+                        <Button x:Name="buttonRedMinus1" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,40,10,0" Click="OnRedScoreMinus1">
                             <StackPanel>
                                 <Image Source="minus.jpg"/>
                             </StackPanel>
                         </Button>
                         <TextBox x:Name="textBoxRedReset" Grid.Column="5" HorizontalAlignment="Left" FontSize="16"  Margin="10,10,0,0" TextWrapping="NoWrap" Text="0" VerticalAlignment="Top" Width="50"/>
-                        <Button x:Name="buttonRedReset" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,40,10,0">
+                        <Button x:Name="buttonRedReset" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,40,10,0" ToolTip="Reset" Click="OnRedScoreReset">
                             <StackPanel>
                                 <Image Source="reset.jpg"/>
                             </StackPanel>
