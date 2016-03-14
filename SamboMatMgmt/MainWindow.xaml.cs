@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace SamboMatMgmt
 {
@@ -21,14 +22,13 @@ namespace SamboMatMgmt
     /// </summary>
     public partial class MainWindow : Window
     {
-
-        public int _start_pause = 0;
         private ScoreDisplay _DisplayWin = new ScoreDisplay();
         private SamboMatMgmtViewModel _ViewModel;
 
         public MainWindow()
         {
             InitializeComponent();
+
             this._ViewModel = new SamboMatMgmtViewModel((ScoreDisplayViewModel)_DisplayWin.DataContext);
             this.DataContext = this._ViewModel;
             this._DisplayWin.Show();
@@ -67,17 +67,28 @@ namespace SamboMatMgmt
 
     public class SamboMatMgmtViewModel : INotifyPropertyChanged
     {
-        private bool _isPlaying = false;
+        public int _start_pause = 0;
+        private bool _is_counting = false;
+        private string _currenttime;
+        private DateTime _the_time;
+        private long _FightTime = 180;
         private RelayCommand _playCommand;
         private ScoreDisplayViewModel _DisplayWin;
-        private String _CompetitorRedName = "";
-        private String _CompetitorBlueName = "";
-        private int _FightTime;
+
+        private String  _CompetitorRedName = "";
+        private long _score_red = 0;
+
+        private String  _CompetitorBlueName = "";
+        private long _score_blue = 0;
 
         public SamboMatMgmtViewModel(ScoreDisplayViewModel dcDisplayWin)
         {
-            isPlaying = false;
             this._DisplayWin = dcDisplayWin;
+
+            DispatcherTimer timer = new DispatcherTimer(DispatcherPriority.Background);
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += UpdateTime;
+            timer.Start();
         }
 
         public String CompetitorRedName
@@ -100,7 +111,17 @@ namespace SamboMatMgmt
             }
         }
 
-        public int FightTime
+        public String ScoreRed
+        {
+            get { return this._score_red.ToString(); }
+        }
+
+        public String ScoreBlue
+        {
+            get { return this._score_blue.ToString(); }
+        }
+
+        public long FightTime
         {
             get { return this._FightTime; }
             set
@@ -110,19 +131,19 @@ namespace SamboMatMgmt
             }
         }
 
-        public bool isPlaying
+        public bool isCounting
         {
-            get { return _isPlaying; }
+            get { return _is_counting; }
             set
             {
-                _isPlaying = value;
-                OnPropertyChanged("isPlaying");
-                if(this._DisplayWin != null)
+                _is_counting = value;
+                OnPropertyChanged("isCounting");
+                if (this._DisplayWin != null)
                     this._DisplayWin.isCounting = value;
             }
         }
 
-        public ICommand PlayCommand
+        public ICommand FightCommand
         {
             get
             {
@@ -134,15 +155,39 @@ namespace SamboMatMgmt
                     {
                         if (buttonType.Contains("start"))
                         {
-                            isPlaying = true;
+                            isCounting = true;
                         }
                         else if (buttonType.Contains("stop"))
                         {
-                            isPlaying = false;
+                            isCounting = false;
                         }
                     }
                 });
             }
+        }
+
+        public string CurrentTime
+        {
+            get { return _currenttime; }
+            set
+            {
+                _currenttime = value;
+                OnPropertyChanged("CurrentTime");
+                if (this._DisplayWin != null)
+                    this._DisplayWin.CurrentTime = value;
+            }
+        }
+
+        private void UpdateTime(object sender, EventArgs e)
+        {
+            if (_is_counting == false)
+                return;
+
+            if (_FightTime > 0)
+                _FightTime -= 1;
+
+            _the_time = new DateTime(_FightTime * 10000000);
+            CurrentTime = _the_time.ToString("mm:ss");
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

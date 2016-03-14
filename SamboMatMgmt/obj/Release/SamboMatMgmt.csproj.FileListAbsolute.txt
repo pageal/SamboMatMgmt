@@ -1,0 +1,16 @@
+C:\Users\pgesyuk\documents\visual studio 2015\Projects\SamboMatMgmt\SamboMatMgmt\bin\Release\SamboMatMgmt.exe.config
+C:\Users\pgesyuk\documents\visual studio 2015\Projects\SamboMatMgmt\SamboMatMgmt\bin\Release\SamboMatMgmt.exe
+C:\Users\pgesyuk\documents\visual studio 2015\Projects\SamboMatMgmt\SamboMatMgmt\bin\Release\SamboMatMgmt.pdb
+C:\Users\pgesyuk\documents\visual studio 2015\Projects\SamboMatMgmt\SamboMatMgmt\obj\Release\MainWindow.g.cs
+C:\Users\pgesyuk\documents\visual studio 2015\Projects\SamboMatMgmt\SamboMatMgmt\obj\Release\ScoreDisplay.g.cs
+C:\Users\pgesyuk\documents\visual studio 2015\Projects\SamboMatMgmt\SamboMatMgmt\obj\Release\App.g.cs
+C:\Users\pgesyuk\documents\visual studio 2015\Projects\SamboMatMgmt\SamboMatMgmt\obj\Release\SamboMatMgmt_MarkupCompile.cache
+C:\Users\pgesyuk\documents\visual studio 2015\Projects\SamboMatMgmt\SamboMatMgmt\obj\Release\SamboMatMgmt_MarkupCompile.lref
+C:\Users\pgesyuk\documents\visual studio 2015\Projects\SamboMatMgmt\SamboMatMgmt\obj\Release\MainWindow.baml
+C:\Users\pgesyuk\documents\visual studio 2015\Projects\SamboMatMgmt\SamboMatMgmt\obj\Release\ScoreDisplay.baml
+C:\Users\pgesyuk\documents\visual studio 2015\Projects\SamboMatMgmt\SamboMatMgmt\obj\Release\SamboMatMgmt.g.resources
+C:\Users\pgesyuk\documents\visual studio 2015\Projects\SamboMatMgmt\SamboMatMgmt\obj\Release\SamboMatMgmt.Properties.Resources.resources
+C:\Users\pgesyuk\documents\visual studio 2015\Projects\SamboMatMgmt\SamboMatMgmt\obj\Release\SamboMatMgmt.csproj.GenerateResource.Cache
+C:\Users\pgesyuk\documents\visual studio 2015\Projects\SamboMatMgmt\SamboMatMgmt\obj\Release\SamboMatMgmt.exe
+C:\Users\pgesyuk\documents\visual studio 2015\Projects\SamboMatMgmt\SamboMatMgmt\obj\Release\SamboMatMgmt.pdb
+C:\Users\pgesyuk\documents\visual studio 2015\Projects\SamboMatMgmt\SamboMatMgmt\obj\Release\SamboMatMgmt.csprojResolveAssemblyReference.cache

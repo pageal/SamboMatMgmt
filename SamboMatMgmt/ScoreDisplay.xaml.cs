@@ -12,7 +12,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.Windows.Threading;
 
 namespace SamboMatMgmt
 {
@@ -31,24 +30,22 @@ namespace SamboMatMgmt
 
     public class ScoreDisplayViewModel : INotifyPropertyChanged
     {
+        private DateTime    _the_time = new DateTime(0);
+        private bool        _is_counting = false;
+        private long        _FightTime;
+        private string      _currenttime;
+
+
         //CompetitorRed
-        private String _CompetitorRedName = "";
-
+        private String  _CompetitorRedName = "";
+        private long    _CompetitorRedScore = 0;
         //CompetitorBlue
-        private String _CompetitorBlueName = "";
+        private String  _CompetitorBlueName = "";
+        private long    _CompetitorBlueScore = 0;
 
-        private bool _is_counting = false;
-        private string _currenttime;
-        private DateTime _the_time;
-
-        private long _FightTime = 180;
 
         public ScoreDisplayViewModel()
         {
-            DispatcherTimer timer = new DispatcherTimer(DispatcherPriority.Background);
-            timer.Interval = TimeSpan.FromSeconds(1);
-            timer.Tick += UpdateTime;
-            timer.Start();
             CurrentTime = _the_time.ToString("mm:ss");
         }
 
@@ -99,21 +96,9 @@ namespace SamboMatMgmt
             {
                 _currenttime = value;
                 OnPropertyChanged("CurrentTime");
-                // lblTime.Content = the_time.ToString("mm:ss");
             }
         }
 
-        private void UpdateTime(object sender, EventArgs e)
-        {
-            if (_is_counting == false)
-                return;
-
-            if (_FightTime > 0)
-                _FightTime -= 1;
-
-            _the_time = new DateTime(_FightTime * 10000000);
-            CurrentTime = _the_time.ToString("mm:ss");
-        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(string propertyName)

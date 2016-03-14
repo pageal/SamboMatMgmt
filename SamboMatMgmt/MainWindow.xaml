@@ -19,17 +19,17 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Rectangle Grid.Column="0" Fill="Red" HorizontalAlignment="Stretch"/>
-            <Rectangle Grid.Column="1" Fill="Black" HorizontalAlignment="Stretch"/>
+            <Rectangle Grid.Column="1" Fill="Black"/>
             <Rectangle Grid.Column="2" Fill="Blue" HorizontalAlignment="Stretch"/>
-            <Button Grid.Column="1" Margin="10,10,10,10" VerticalAlignment="Top" HorizontalAlignment="Center" Height="80" Width="80" IsDefault="True" Name="buttonPlay" Command="{Binding PlayCommand}" CommandParameter="{Binding ElementName=ButtonImage, Path=Source}" >
+            <Button Grid.Column="1" Margin="10,10,10,10" VerticalAlignment="Top" HorizontalAlignment="Center" Height="80" Width="80" IsDefault="True" Name="buttonFight" Command="{Binding FightCommand}" CommandParameter="{Binding ElementName=ButtonImage, Path=Source}" >
                 <Image Name="ButtonImage">
                     <Image.Style>
                         <Style TargetType="{x:Type Image}">
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding isPlaying}" Value="True">
+                                <DataTrigger Binding="{Binding isCounting}" Value="True">
                                     <Setter Property="Source" Value="stop.jpg" />
                                 </DataTrigger>
-                                <DataTrigger Binding="{Binding isPlaying}" Value="False">
+                                <DataTrigger Binding="{Binding isCounting}" Value="False">
                                     <Setter Property="Source" Value="start.jpg" />
                                 </DataTrigger>
                             </Style.Triggers>
@@ -38,10 +38,67 @@
                 </Image>
             </Button>
             <ComboBox x:Name="BattleTime" Grid.Column="1" HorizontalAlignment="Center" Margin="10,110,10,10" IsEditable="True" VerticalAlignment="Top" Width="100" FontSize="16" FontWeight="Bold" LostFocus="FightTime_LostFocus"/>
+            <Label x:Name="lblFightTime" Grid.Column="1" Content="Fight Time:" FontSize="30" HorizontalAlignment="Center" Margin="10,160,0,10" VerticalAlignment="Top" Foreground="#FFF7F6F6" FontFamily="Arial Black"/>
+            <Label x:Name="lblTime" Grid.Column="1" Content="{Binding CurrentTime}" FontSize="96" HorizontalAlignment="Center" Margin="10,220,0,10" VerticalAlignment="Top" Foreground="#FFF7F6F6" FontFamily="Arial Black" FontWeight="Bold" />
             <Label x:Name="labelCompetitorRed" Content="Competitor:" Grid.Column="0" Margin="10,10,10,10" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="16" FontFamily="Arial" FontWeight="Bold"/>
             <ComboBox x:Name="ComboCompetitorRed" Grid.Column="0" Margin="150,10,10,10" VerticalAlignment="Top" HorizontalAlignment="Stretch" IsEditable="True" FontWeight="Bold" FontSize="16" FontFamily="Arial" SelectionChanged="ComboCompetitorRed_SelectionChanged" LostFocus="ComboCompetitorRed_LostFocus"/>
             <Label x:Name="labelCompetitorBlue" Content="Competitor:" Grid.Column="2" Margin="10,10,10,10" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" FontSize="16" FontFamily="Arial"/>
             <ComboBox x:Name="ComboCompetitorBlue" Grid.Column="2" Margin="150,10,10,10" VerticalAlignment="Top" HorizontalAlignment="Stretch" IsEditable="True" FontWeight="Bold" FontSize="16" FontFamily="Arial" LostFocus="ComboCompetitorBlue_LostFocus"/>
+            <GroupBox x:Name="GroupScoreRed" Grid.Column="0" Header="Score" HorizontalAlignment="Stretch" Height="400" Margin="10,80,10,10" VerticalAlignment="Top" Foreground="#FFBD1010" FontSize="26.667" FontWeight="Bold" BorderBrush="#FF9B2B0B">
+                <GroupBox.Effect>
+                    <DropShadowEffect Color="#FFD12222" BlurRadius="10" ShadowDepth="10"/>
+                </GroupBox.Effect>
+                <StackPanel>
+                    <Label x:Name="ScoreRed" Content="{Binding ScoreRed}" FontSize="120" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Top" Foreground="#FFF7F6F6" FontFamily="Arial Black" FontWeight="Bold" />
+                    <Grid Margin="10,10,10,10" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Grid.ColumnSpan="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition  Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox x:Name="textBoxRedPlus1" Grid.Column="0" HorizontalAlignment="Left" FontSize="16"  Margin="10,10,10,10" TextWrapping="NoWrap" Text="1" VerticalAlignment="Top" Width="50"/>
+                        <Button x:Name="buttonRedPlus1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,40,10,0">
+                            <StackPanel>
+                                <Image Source="plus.jpg"/>
+                            </StackPanel>
+                        </Button>
+                        <TextBox x:Name="textBox2" Grid.Column="1" HorizontalAlignment="Left" FontSize="16"  Margin="10,10,0,0" TextWrapping="NoWrap" Text="2" VerticalAlignment="Top" Width="50"/>
+                        <Button x:Name="buttonRedPlus2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,40,10,0">
+                            <StackPanel>
+                                <Image Source="plus.jpg"/>
+                            </StackPanel>
+                        </Button>
+                        <TextBox x:Name="textBox3" Grid.Column="2" HorizontalAlignment="Left" FontSize="16"  Margin="10,10,0,0" TextWrapping="NoWrap" Text="4" VerticalAlignment="Top" Width="50"/>
+                        <Button x:Name="buttonRedPlus4" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,40,10,0">
+                            <StackPanel>
+                                <Image Source="plus.jpg"/>
+                            </StackPanel>
+                        </Button>
+                        <TextBox x:Name="textBoxMinus1" Grid.Column="4" HorizontalAlignment="Left" FontSize="16"  Margin="10,10,0,0" TextWrapping="NoWrap" Text="1" VerticalAlignment="Top" Width="50"/>
+                        <Button x:Name="buttonRedMinus1" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,40,10,0">
+                            <StackPanel>
+                                <Image Source="minus.jpg"/>
+                            </StackPanel>
+                        </Button>
+                        <TextBox x:Name="textBoxRedReset" Grid.Column="5" HorizontalAlignment="Left" FontSize="16"  Margin="10,10,0,0" TextWrapping="NoWrap" Text="0" VerticalAlignment="Top" Width="50"/>
+                        <Button x:Name="buttonRedReset" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,40,10,0">
+                            <StackPanel>
+                                <Image Source="reset.jpg"/>
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox x:Name="GroupScoreBlue" Grid.Column="2" Header="Score" HorizontalAlignment="Stretch" Height="400" Margin="10,80,10,10" VerticalAlignment="Top" Foreground="#FF1127B6" FontSize="26.667" FontWeight="Bold" BorderBrush="#FF151A95">
+                <GroupBox.Effect>
+                    <DropShadowEffect Color="#FF163997" BlurRadius="10" ShadowDepth="10"/>
+                </GroupBox.Effect>
+                <Label x:Name="ScoreBlue" Grid.Column="1" Content="{Binding ScoreBlue}" FontSize="120" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Top" Foreground="#FFF7F6F6" FontFamily="Arial Black" FontWeight="Bold" />
+            </GroupBox>
         </Grid>
     </Grid>
 </Window>
