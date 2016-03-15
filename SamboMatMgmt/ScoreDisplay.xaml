@@ -13,12 +13,16 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <Rectangle Grid.Column="0" Fill="Red" HorizontalAlignment="Stretch"/>
+            <Rectangle Grid.Column="0" Fill="#FFD31A1A" HorizontalAlignment="Stretch"/>
             <Rectangle Grid.Column="1" Fill="Black" HorizontalAlignment="Stretch"/>
-            <Rectangle Grid.Column="2" Fill="Blue" HorizontalAlignment="Stretch"/>
+            <Rectangle Grid.Column="2" Fill="#FF1414DC" HorizontalAlignment="Stretch"/>
             <Label x:Name="CompetitorRed" Grid.Column="0" Content="{Binding CompetitorRedName}" HorizontalAlignment="Center" Margin="10,10,10,10" VerticalAlignment="Top" FontSize="48" FontWeight="Bold" FontStyle="Italic"/>
+            <Label x:Name="ScoreRed" Grid.Column="0" Content="{Binding ScoreRed}" FontSize="300" HorizontalAlignment="Center" Margin="0,50,0,0" VerticalAlignment="Center" Foreground="#FFF7F6F6" FontFamily="Arial Black" FontWeight="Bold" />
+
             <Label x:Name="lblTime" Grid.Column="1" Content="{Binding CurrentTime}" FontSize="150" HorizontalAlignment="Center" Margin="10,10,0,10" VerticalAlignment="Center" Foreground="#FFF7F6F6" FontFamily="Arial Black" FontWeight="Bold" />
+            
             <Label x:Name="CompetitorBlue" Grid.Column="2" Content="{Binding CompetitorBlueName}" HorizontalAlignment="Center" Margin="10,10,10,10" VerticalAlignment="Top" FontSize="48" FontWeight="Bold" FontStyle="Italic"/>
+            <Label x:Name="ScoreBlue" Grid.Column="2" Content="{Binding ScoreBlue}" FontSize="300" HorizontalAlignment="Center" Margin="0,50,0,0" VerticalAlignment="Center" Foreground="#FFF7F6F6" FontFamily="Arial Black" FontWeight="Bold" />
         </Grid>
     </Grid>
 </Window>

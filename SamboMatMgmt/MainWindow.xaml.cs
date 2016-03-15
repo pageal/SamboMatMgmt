@@ -87,6 +87,28 @@ namespace SamboMatMgmt
         {
             _ViewModel.OnRedScoreMinus(Convert.ToInt32(textBoxRedMinus1.Text));
         }
+
+        private void OnBluePlus1(object sender, RoutedEventArgs e)
+        {
+            _ViewModel.OnBlueScorePlus(Convert.ToInt32(textBoxBluePlus1.Text));
+        }
+        private void OnBlueScorePlus2(object sender, RoutedEventArgs e)
+        {
+            _ViewModel.OnBlueScorePlus(Convert.ToInt32(textBoxBluePlus2.Text));
+        }
+        private void OnBlueScorePlus4(object sender, RoutedEventArgs e)
+        {
+            _ViewModel.OnBlueScorePlus(Convert.ToInt32(textBoxBluePlus4.Text));
+        }
+        private void OnBlueScoreMinus1(object sender, RoutedEventArgs e)
+        {
+            _ViewModel.OnBlueScoreMinus(Convert.ToInt32(textBoxBlueMinus1.Text));
+        }
+        private void OnBlueScoreReset(object sender, RoutedEventArgs e)
+        {
+            _ViewModel.OnRedScoreReset(Convert.ToInt32(textBoxBlueReset.Text));
+        }
+
     }
 
 
@@ -138,12 +160,13 @@ namespace SamboMatMgmt
 
         public String ScoreRed
         {
-            get { return this._score_red.ToString(); }
+            get { String score = this._score_red.ToString(); _DisplayWin.ScoreRed = score; return score; }
         }
 
         public String ScoreBlue
         {
-            get { return this._score_blue.ToString(); }
+            get { String score = this._score_blue.ToString(); _DisplayWin.ScoreBlue = score;  return score; }
+            
         }
 
         public long FightTime
@@ -236,6 +259,28 @@ namespace SamboMatMgmt
                 _score_red = 0;
             OnPropertyChanged("ScoreRed");
 
+        }
+
+        public void OnBlueScoreReset(int val)
+        {
+            _score_blue = val;
+            OnPropertyChanged("ScoreBlue");
+
+        }
+
+        public void OnBlueScorePlus(int increment)
+        {
+            _score_blue += increment;
+            OnPropertyChanged("ScoreBlue");
+
+        }
+
+        public void OnBlueScoreMinus(int increment)
+        {
+            _score_blue -= increment;
+            if (_score_blue < 0)
+                _score_blue = 0;
+            OnPropertyChanged("ScoreBlue");
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

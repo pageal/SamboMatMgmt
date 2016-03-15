@@ -38,10 +38,10 @@ namespace SamboMatMgmt
 
         //CompetitorRed
         private String  _CompetitorRedName = "";
-        private long    _CompetitorRedScore = 0;
+        private String   _CompetitorRedScore = "0";
         //CompetitorBlue
         private String  _CompetitorBlueName = "";
-        private long    _CompetitorBlueScore = 0;
+        private String  _CompetitorBlueScore = "0";
 
 
         public ScoreDisplayViewModel()
@@ -76,6 +76,26 @@ namespace SamboMatMgmt
             {
                 _CompetitorBlueName = value;
                 OnPropertyChanged("CompetitorBlueName");
+            }
+        }
+
+        public String ScoreRed
+        {
+            get { return this._CompetitorRedScore.ToString(); }
+            set
+            {
+                _CompetitorRedScore = value;
+                OnPropertyChanged("ScoreRed");
+            }
+        }
+
+        public String ScoreBlue
+        {
+            get { return this._CompetitorBlueScore.ToString(); }
+            set
+            {
+                _CompetitorBlueScore = value;
+                OnPropertyChanged("ScoreBlue");
             }
         }
 
