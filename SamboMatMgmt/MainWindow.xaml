@@ -16,36 +16,67 @@
             <Rectangle Grid.Column="0" Fill="#FFD31A1A" HorizontalAlignment="Stretch"/>
             <Rectangle Grid.Column="1" Fill="Black"/>
             <Rectangle Grid.Column="2" Fill="#FF1414DC" HorizontalAlignment="Stretch"/>
-            <Button Grid.Column="1" Margin="10,10,10,10" VerticalAlignment="Top" HorizontalAlignment="Center" Height="80" Width="80" IsDefault="True" Name="buttonFight" Command="{Binding FightCommand}" CommandParameter="{Binding ElementName=ButtonImage, Path=Source}" >
-                <Image Name="ButtonImage">
-                    <Image.Style>
-                        <Style TargetType="{x:Type Image}">
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding isCounting}" Value="True">
-                                    <Setter Property="Source" Value="stop.jpg" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding isCounting}" Value="False">
-                                    <Setter Property="Source" Value="start.jpg" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Image.Style>
-                </Image>
-            </Button>
-            <ComboBox x:Name="BattleTime" Grid.Column="1" HorizontalAlignment="Center" Margin="10,110,10,10" IsEditable="True" VerticalAlignment="Top" Width="100" FontSize="16" FontWeight="Bold" LostFocus="FightTime_LostFocus"/>
-            <Label x:Name="lblFightTime" Grid.Column="1" Content="Fight Time:" FontSize="30" HorizontalAlignment="Center" Margin="10,160,0,10" VerticalAlignment="Top" Foreground="#FFF7F6F6" FontFamily="Arial Black"/>
-            <Label x:Name="lblTime" Grid.Column="1" Content="{Binding CurrentTime}" FontSize="96" HorizontalAlignment="Center" Margin="10,220,0,10" VerticalAlignment="Top" Foreground="#FFF7F6F6" FontFamily="Arial Black" FontWeight="Bold" />
+            
+            <StackPanel Grid.Column="1">
+                <Grid x:Name="MainButtons" Margin="10,10,10,10" HorizontalAlignment="Stretch" Grid.ColumnSpan="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="1" Margin="10,10,10,10" VerticalAlignment="Top" HorizontalAlignment="Center" Height="80" Width="80" IsDefault="True" Name="buttonFight" Command="{Binding FightCommand}" CommandParameter="{Binding ElementName=ButtonImage, Path=Source}" >
+                        <Image Name="ButtonImage">
+                            <Image.Style>
+                                <Style TargetType="{x:Type Image}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding isCounting}" Value="True">
+                                            <Setter Property="Source" Value="pics/stop.jpg" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding isCounting}" Value="False">
+                                            <Setter Property="Source" Value="pics/start.jpg" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                        </Image>
+                    </Button>
+                    <Button Grid.Column="0" Margin="10,10,10,10" VerticalAlignment="Top" HorizontalAlignment="Center" Height="80" Width="80" IsDefault="False" Name="buttonReset" Click="OnBtnResetClick">
+                        <StackPanel>
+                            <Image Source="pics/reset.jpg"/>
+                        </StackPanel>
+                    </Button>
+                </Grid>
+                <Grid x:Name="Parameters" Margin="10,10,10,10" HorizontalAlignment="Stretch" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label x:Name="labelWeight" Content="Weight:" Grid.Row="0" Grid.Column="0" Margin="0,10,0,10" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="16" FontFamily="Arial" FontWeight="Bold" Foreground="#FFF9F7F7"/>
+                    <ComboBox x:Name="Weight" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" Margin="10,10,10,10" Text="20" IsEditable="True" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" LostFocus="FightLen_LostFocus" KeyUp="OnWeightEditKeyIp"/>
+                    <Label x:Name="labelKg" Content="kg" Grid.Row="0" Grid.Column="3" Margin="0,10,0,10" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="16" FontFamily="Arial" FontWeight="Bold" Foreground="#FFF9F7F7"/>
+                    <Label x:Name="labelFightLen" Content="Fight Length:" Grid.Row="1" Grid.Column="0" Margin="0,10,0,10" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="16" FontFamily="Arial" FontWeight="Bold" Foreground="#FFF9F7F7"/>
+                    <ComboBox x:Name="BattleTime" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" Margin="10,10,10,10" Text="180" IsEditable="True" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" LostFocus="FightLen_LostFocus"/>
+                    <Label x:Name="labelSec" Content="sec" Grid.Row="1" Grid.Column="3" Margin="0,10,0,10" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="16" FontFamily="Arial" FontWeight="Bold" Foreground="#FFF9F7F7"/>
+            </Grid>
+                <Label x:Name="lblFightTime" Grid.Column="1" Content="Fight Clock:" FontSize="22" HorizontalAlignment="Stretch" Margin="10,20,10,0" VerticalAlignment="Top" Foreground="#FFF7F6F6" FontFamily="Arial Black" Background="#FF767171"/>
+                <Label x:Name="lblTimeClock" Grid.Column="1" Content="{Binding FightClock}" FontSize="72" HorizontalAlignment="Stretch" Margin="10,0,10,0" VerticalAlignment="Top" Foreground="#FFF7F6F6" FontFamily="Arial Black" FontWeight="Bold" Background="#FF767171"/>
+            </StackPanel>
+
             <Label x:Name="labelCompetitorRed" Content="Competitor:" Grid.Column="0" Margin="10,10,10,10" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="16" FontFamily="Arial" FontWeight="Bold"/>
             <ComboBox x:Name="ComboCompetitorRed" Grid.Column="0" Margin="150,10,10,10" VerticalAlignment="Top" HorizontalAlignment="Stretch" IsEditable="True" FontWeight="Bold" FontSize="16" FontFamily="Arial" SelectionChanged="ComboCompetitorRed_SelectionChanged" LostFocus="ComboCompetitorRed_LostFocus"/>
             <Label x:Name="labelCompetitorBlue" Content="Competitor:" Grid.Column="2" Margin="10,10,10,10" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" FontSize="16" FontFamily="Arial"/>
             <ComboBox x:Name="ComboCompetitorBlue" Grid.Column="2" Margin="150,10,10,10" VerticalAlignment="Top" HorizontalAlignment="Stretch" IsEditable="True" FontWeight="Bold" FontSize="16" FontFamily="Arial" LostFocus="ComboCompetitorBlue_LostFocus"/>
             <StackPanel Grid.Column="0">
-                <GroupBox x:Name="GroupScoreRed" Grid.Column="0" Header="Score" HorizontalAlignment="Stretch" Margin="10,80,10,10" VerticalAlignment="Top" Foreground="#FF780C0C" FontSize="26.667" FontWeight="Bold" BorderBrush="#FF9B2B0B">
+                <GroupBox x:Name="GroupScoreRed" Grid.Column="0" Header="Score" HorizontalAlignment="Stretch" Margin="10,50,10,10" VerticalAlignment="Top" Foreground="#FF780C0C" FontSize="22" FontWeight="Bold" BorderBrush="#FF9B2B0B">
                     <GroupBox.Effect>
                         <DropShadowEffect Color="#FFD12222" BlurRadius="10" ShadowDepth="10"/>
                     </GroupBox.Effect>
                     <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Bottom">
-                        <Label x:Name="ScoreRed" Content="{Binding ScoreRed}" FontSize="120" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Top" Foreground="#FFF7F6F6" FontFamily="Arial Black" FontWeight="Bold" />
+                        <Label x:Name="ScoreRed" Content="{Binding ScoreRed}" FontSize="96" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Top" Foreground="#FFF7F6F6" FontFamily="Arial Black" FontWeight="Bold" />
                         <Grid Margin="10,10,10,10" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Grid.ColumnSpan="3">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition  Width="Auto"/>
@@ -56,40 +87,40 @@
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
 
-                            <TextBox x:Name="textBoxRedPlus1" Grid.Column="0" HorizontalAlignment="Left" FontSize="16"  Margin="10,10,10,10" TextWrapping="NoWrap" Text="1" VerticalAlignment="Top" Width="50"/>
-                            <Button x:Name="buttonRedPlus1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,40,10,0" Click="OnRedPlus1">
+                            <TextBox x:Name="textBoxRedPlus1" Grid.Column="0" HorizontalAlignment="Left" FontSize="16"  Margin="10,0,10,0" TextWrapping="NoWrap" Text="1" VerticalAlignment="Top" Width="50"/>
+                            <Button x:Name="buttonRedPlus1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,30,10,0" Click="OnRedPlus1">
                                 <StackPanel>
-                                    <Image Source="plus.jpg"/>
+                                    <Image Source="pics/plus.jpg"/>
                                 </StackPanel>
                             </Button>
-                            <TextBox x:Name="textBoxRedPlus2" Grid.Column="1" HorizontalAlignment="Left" FontSize="16"  Margin="10,10,0,0" TextWrapping="NoWrap" Text="2" VerticalAlignment="Top" Width="50"/>
-                            <Button x:Name="buttonRedPlus2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,40,10,0" Click="OnRedScorePlus2">
+                            <TextBox x:Name="textBoxRedPlus2" Grid.Column="1" HorizontalAlignment="Left" FontSize="16"  Margin="10,0,10,0" TextWrapping="NoWrap" Text="2" VerticalAlignment="Top" Width="50"/>
+                            <Button x:Name="buttonRedPlus2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,30,10,0" Click="OnRedScorePlus2">
                                 <StackPanel>
-                                    <Image Source="plus.jpg"/>
+                                    <Image Source="pics/plus.jpg"/>
                                 </StackPanel>
                             </Button>
-                            <TextBox x:Name="textBoxRedPlus4" Grid.Column="2" HorizontalAlignment="Left" FontSize="16"  Margin="10,10,0,0" TextWrapping="NoWrap" Text="4" VerticalAlignment="Top" Width="50"/>
-                            <Button x:Name="buttonRedPlus4" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,40,10,0" Click="OnRedScorePlus4">
+                            <TextBox x:Name="textBoxRedPlus4" Grid.Column="2" HorizontalAlignment="Left" FontSize="16"  Margin="10,0,10,0" TextWrapping="NoWrap" Text="4" VerticalAlignment="Top" Width="50"/>
+                            <Button x:Name="buttonRedPlus4" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,30,10,0" Click="OnRedScorePlus4">
                                 <StackPanel>
-                                    <Image Source="plus.jpg"/>
+                                    <Image Source="pics/plus.jpg"/>
                                 </StackPanel>
                             </Button>
-                            <TextBox x:Name="textBoxRedMinus1" Grid.Column="4" HorizontalAlignment="Left" FontSize="16"  Margin="10,10,0,0" TextWrapping="NoWrap" Text="1" VerticalAlignment="Top" Width="50"/>
-                            <Button x:Name="buttonRedMinus1" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,40,10,0" Click="OnRedScoreMinus1">
+                            <TextBox x:Name="textBoxRedMinus1" Grid.Column="4" HorizontalAlignment="Left" FontSize="16"  Margin="10,0,10,0" TextWrapping="NoWrap" Text="1" VerticalAlignment="Top" Width="50"/>
+                            <Button x:Name="buttonRedMinus1" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,30,10,0" Click="OnRedScoreMinus1">
                                 <StackPanel>
-                                    <Image Source="minus.jpg"/>
+                                    <Image Source="pics/minus.jpg"/>
                                 </StackPanel>
                             </Button>
-                            <TextBox x:Name="textBoxRedReset" Grid.Column="5" HorizontalAlignment="Left" FontSize="16"  Margin="10,10,0,0" TextWrapping="NoWrap" Text="0" VerticalAlignment="Top" Width="50"/>
-                            <Button x:Name="buttonRedReset" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,40,10,0" ToolTip="Reset" Click="OnRedScoreReset">
+                            <TextBox x:Name="textBoxRedReset" Grid.Column="5" HorizontalAlignment="Left" FontSize="16"  Margin="10,0,10,0" TextWrapping="NoWrap" Text="0" VerticalAlignment="Top" Width="50"/>
+                            <Button x:Name="buttonRedReset" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,30,10,0" ToolTip="Reset" Click="OnRedScoreReset">
                                 <StackPanel>
-                                    <Image Source="reset.jpg"/>
+                                    <Image Source="pics/reset.jpg"/>
                                 </StackPanel>
                             </Button>
                         </Grid>
                     </StackPanel>
                 </GroupBox>
-                <GroupBox x:Name="SpecialActionsRed" Grid.Column="0" Header="Special Actions" HorizontalAlignment="Stretch" Margin="10,0,10,10" VerticalAlignment="Top" Foreground="#FF780C0C" FontSize="26.667" FontWeight="Bold" BorderBrush="#FF9B2B0B">
+                <GroupBox x:Name="SpecialActionsRed" Grid.Column="0" Header="Special Action Timers (sec)" HorizontalAlignment="Stretch" Margin="10,0,10,10" VerticalAlignment="Top" Foreground="#FF780C0C" FontSize="22" FontWeight="Bold" BorderBrush="#FF9B2B0B">
                     <GroupBox.Effect>
                         <DropShadowEffect Color="#FFD12222" BlurRadius="10" ShadowDepth="10"/>
                     </GroupBox.Effect>
@@ -101,19 +132,61 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition />
                                 <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
-                        </Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <TextBox x:Name="textBoxHold" Grid.Column="0" HorizontalAlignment="Left" FontSize="16"  Margin="10,0,10,10" TextWrapping="NoWrap" Text="20" VerticalAlignment="Top" Width="50"/>
+                        <Button x:Name="buttonHold" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,30,10,0" Click="OnActionHoldRed" ToolTip="Handle/Hold">
+                            <StackPanel>
+                                <Image Source="pics/hold.jpg"/>
+                            </StackPanel>
+                        </Button>
+                        <TextBox x:Name="textBoxPain" Grid.Column="1" HorizontalAlignment="Left" FontSize="16"  Margin="10,0,10,0" TextWrapping="NoWrap" Text="60" VerticalAlignment="Top" Width="50"/>
+                        <Button x:Name="buttonPain" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,30,10,0" Click="OnActionPainRed" ToolTip="Pain">
+                            <StackPanel>
+                                <Image Source="pics/target.jpg" ToolTip="Pain"/>
+                            </StackPanel>
+                        </Button>
+                        <TextBox x:Name="textBoxMedical" Grid.Column="2" HorizontalAlignment="Left" FontSize="16"  Margin="10,0,10,0" TextWrapping="NoWrap" Text="180" VerticalAlignment="Top" Width="50"/>
+                        <Button x:Name="buttonMedical" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,30,10,0" Click="OnActionMedicalRed" ToolTip="Medical Timeout">
+                            <StackPanel>
+                                <Image Source="pics/medical.jpg" ToolTip="Medical Timeout"/>
+                            </StackPanel>
+                        </Button>
+                        <StackPanel Grid.Column="3">
+                            <Label x:Name="lblSpecialTimeRed"  Content="Special Clock:" FontSize="16" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Top" Foreground="#FFF7F6F6" FontFamily="Arial" Background="#FF767171"/>
+                            <Label x:Name="lblSpecialClockRed" Content="{Binding SpecialClockRed}" FontSize="22" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Top" Foreground="#FFF7F6F6" FontFamily="Arial" FontWeight="Bold" Background="#FF767171"/>
+                            <Label x:Name="lblSpecialActionRed" Content="" FontSize="16" Margin="0,0,0,0" VerticalAlignment="Top" Foreground="#FFF7F6F6" FontFamily="Arial" Background="#FF767171"/>
+                        </StackPanel>
+
+                        <Button x:Name="buttonStopSpecialActionRed" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,30,10,0" ToolTip="Stop" Click="OnSpecialActionStopRed">
+                            <Image Name="buttonStopSpecialActionRedImage">
+                                <Image.Style>
+                                    <Style TargetType="{x:Type Image}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding isCountingSpecialRed}" Value="True">
+                                                <Setter Property="Source" Value="pics/stop_action.jpg" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding isCountingSpecialRed}" Value="False">
+                                                <Setter Property="Source" Value="pics/stop_action_grey.jpg" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Image.Style>
+                            </Image>
+                        </Button>
+                    </Grid>
                     </StackPanel>
                 </GroupBox>
             </StackPanel>
             <StackPanel Grid.Column="2">
-                <GroupBox x:Name="GroupScoreBlue" Grid.Column="2" Header="Score" HorizontalAlignment="Stretch" Margin="10,80,10,10" VerticalAlignment="Top" Foreground="#FF0B186C" FontSize="26.667" FontWeight="Bold" BorderBrush="#FF151A95">
+                <GroupBox x:Name="GroupScoreBlue" Grid.Column="2" Header="Score" HorizontalAlignment="Stretch" Margin="10,50,10,10" VerticalAlignment="Top" Foreground="#FF0B186C" FontSize="22" FontWeight="Bold" BorderBrush="#FF151A95">
                     <GroupBox.Effect>
                         <DropShadowEffect Color="#FF163997" BlurRadius="10" ShadowDepth="10"/>
                     </GroupBox.Effect>
                     <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Bottom">
-                        <Label x:Name="ScoreBlue" Content="{Binding ScoreBlue}" FontSize="120" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Top" Foreground="#FFF7F6F6" FontFamily="Arial Black" FontWeight="Bold" />
+                        <Label x:Name="ScoreBlue" Content="{Binding ScoreBlue}" FontSize="96" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Top" Foreground="#FFF7F6F6" FontFamily="Arial Black" FontWeight="Bold" />
                         <Grid Margin="10,10,10,10" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Grid.ColumnSpan="3">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition  Width="Auto"/>
@@ -124,39 +197,94 @@
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
 
-                            <TextBox x:Name="textBoxBluePlus1" Grid.Column="0" HorizontalAlignment="Left" FontSize="16"  Margin="10,10,10,10" TextWrapping="NoWrap" Text="1" VerticalAlignment="Top" Width="50"/>
-                            <Button x:Name="buttonBluePlus1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,40,10,0" Click="OnBluePlus1">
+                            <TextBox x:Name="textBoxBluePlus1" Grid.Column="0" HorizontalAlignment="Left" FontSize="16"  Margin="10,0,10,10" TextWrapping="NoWrap" Text="1" VerticalAlignment="Top" Width="50"/>
+                            <Button x:Name="buttonBluePlus1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,30,10,0" Click="OnBluePlus1">
                                 <StackPanel>
-                                    <Image Source="plus.jpg"/>
+                                <Image Source="pics/plus.jpg"/>
                                 </StackPanel>
                             </Button>
-                            <TextBox x:Name="textBoxBluePlus2" Grid.Column="1" HorizontalAlignment="Left" FontSize="16"  Margin="10,10,0,0" TextWrapping="NoWrap" Text="2" VerticalAlignment="Top" Width="50"/>
-                            <Button x:Name="buttonBluePlus2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,40,10,0" Click="OnBlueScorePlus2">
+                            <TextBox x:Name="textBoxBluePlus2" Grid.Column="1" HorizontalAlignment="Left" FontSize="16"  Margin="10,0,10,0" TextWrapping="NoWrap" Text="2" VerticalAlignment="Top" Width="50"/>
+                            <Button x:Name="buttonBluePlus2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,30,10,0" Click="OnBlueScorePlus2">
                                 <StackPanel>
-                                    <Image Source="plus.jpg"/>
+                                <Image Source="pics/plus.jpg"/>
                                 </StackPanel>
                             </Button>
-                            <TextBox x:Name="textBoxBluePlus4" Grid.Column="2" HorizontalAlignment="Left" FontSize="16"  Margin="10,10,0,0" TextWrapping="NoWrap" Text="4" VerticalAlignment="Top" Width="50"/>
-                            <Button x:Name="buttonBluePlus4" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,40,10,0" Click="OnBlueScorePlus4">
+                            <TextBox x:Name="textBoxBluePlus4" Grid.Column="2" HorizontalAlignment="Left" FontSize="16"  Margin="10,0,10,0" TextWrapping="NoWrap" Text="4" VerticalAlignment="Top" Width="50"/>
+                            <Button x:Name="buttonBluePlus4" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,30,10,0" Click="OnBlueScorePlus4">
                                 <StackPanel>
-                                    <Image Source="plus.jpg"/>
+                                <Image Source="pics/plus.jpg"/>
                                 </StackPanel>
                             </Button>
-                            <TextBox x:Name="textBoxBlueMinus1" Grid.Column="4" HorizontalAlignment="Left" FontSize="16"  Margin="10,10,0,0" TextWrapping="NoWrap" Text="1" VerticalAlignment="Top" Width="50"/>
-                            <Button x:Name="buttonBlueMinus1" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,40,10,0" Click="OnBlueScoreMinus1">
+                            <TextBox x:Name="textBoxBlueMinus1" Grid.Column="4" HorizontalAlignment="Left" FontSize="16"  Margin="10,0,10,0" TextWrapping="NoWrap" Text="1" VerticalAlignment="Top" Width="50"/>
+                            <Button x:Name="buttonBlueMinus1" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,30,10,0" Click="OnBlueScoreMinus1">
                                 <StackPanel>
-                                    <Image Source="minus.jpg"/>
+                                <Image Source="pics/minus.jpg"/>
                                 </StackPanel>
                             </Button>
-                            <TextBox x:Name="textBoxBlueReset" Grid.Column="5" HorizontalAlignment="Left" FontSize="16"  Margin="10,10,0,0" TextWrapping="NoWrap" Text="0" VerticalAlignment="Top" Width="50"/>
-                            <Button x:Name="buttonBlueReset" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,40,10,0" ToolTip="Reset" Click="OnBlueScoreReset">
+                            <TextBox x:Name="textBoxBlueReset" Grid.Column="5" HorizontalAlignment="Left" FontSize="16"  Margin="10,0,10,0" TextWrapping="NoWrap" Text="0" VerticalAlignment="Top" Width="50"/>
+                            <Button x:Name="buttonBlueReset" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,30,10,0" ToolTip="Reset" Click="OnBlueScoreReset">
                                 <StackPanel>
-                                    <Image Source="reset.jpg"/>
+                                <Image Source="pics/reset.jpg"/>
                                 </StackPanel>
                             </Button>
                         </Grid>
                     </StackPanel>
                 </GroupBox>
-            </StackPanel>
+            <GroupBox x:Name="SpecialActionsBlue" Grid.Column="0" Header="Special Action Timers (sec)" HorizontalAlignment="Stretch" Margin="10,0,10,10" VerticalAlignment="Top" Foreground="#FF780C0C" FontSize="22" FontWeight="Bold" BorderBrush="#FF9B2B0B">
+                <GroupBox.Effect>
+                    <DropShadowEffect Color="#FFD12222" BlurRadius="10" ShadowDepth="10"/>
+                </GroupBox.Effect>
+                <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Bottom">
+                    <Grid Margin="10,10,10,10" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Grid.ColumnSpan="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition  Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox x:Name="textBoxHoldBlue" Grid.Column="0" HorizontalAlignment="Left" FontSize="16"  Margin="10,0,10,10" TextWrapping="NoWrap" Text="20" VerticalAlignment="Top" Width="50"/>
+                        <Button x:Name="buttonHoldBlue" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,30,10,0" Click="OnActionHoldBlue" ToolTip="Handle/Hold">
+                            <StackPanel>
+                                <Image Source="pics/hold.jpg"/>
+                            </StackPanel>
+                        </Button>
+                        <TextBox x:Name="textBoxPainBlue" Grid.Column="1" HorizontalAlignment="Left" FontSize="16"  Margin="10,0,10,0" TextWrapping="NoWrap" Text="60" VerticalAlignment="Top" Width="50"/>
+                        <Button x:Name="buttonPainBlue" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,30,10,0" Click="OnActionPainBlue" ToolTip="Pain">
+                            <StackPanel>
+                                <Image Source="pics/target.jpg" ToolTip="Pain"/>
+                            </StackPanel>
+                        </Button>
+                        <TextBox x:Name="textBoxMedicalBlue" Grid.Column="2" HorizontalAlignment="Left" FontSize="16"  Margin="10,0,10,0" TextWrapping="NoWrap" Text="180" VerticalAlignment="Top" Width="50"/>
+                        <Button x:Name="buttonMedicalBlue" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,30,10,0" Click="OnActionMedicalBlue" ToolTip="Medical Timeout">
+                            <StackPanel>
+                                <Image Source="pics/medical.jpg" ToolTip="Medical Timeout"/>
+                            </StackPanel>
+                        </Button>
+                        <StackPanel Grid.Column="3">
+                            <Label x:Name="lblSpecialTimeBlue"  Content="Special Clock:" FontSize="16" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Top" Foreground="#FFF7F6F6" FontFamily="Arial" Background="#FF767171"/>
+                            <Label x:Name="lblSpecialClockBlue" Content="{Binding SpecialClockBlue}" FontSize="22" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Top" Foreground="#FFF7F6F6" FontFamily="Arial" FontWeight="Bold" Background="#FF767171"/>
+                            <Label x:Name="lblSpecialActionBlue" Content="" FontSize="16" Margin="0,0,0,0" VerticalAlignment="Top" Foreground="#FFF7F6F6" FontFamily="Arial" Background="#FF767171"/>
+                        </StackPanel>
+                        <Button x:Name="buttonStopSpecialActionBlue" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,30,10,0" ToolTip="Stop" Click="OnSpecialActionStopBlue">
+                            <Image Name="buttonStopSpecialActionImageBlue">
+                                <Image.Style>
+                                    <Style TargetType="{x:Type Image}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding isCountingSpecialBlue}" Value="True">
+                                                <Setter Property="Source" Value="pics/stop_action.jpg" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding isCountingSpecialBlue}" Value="False">
+                                                <Setter Property="Source" Value="pics/stop_action_grey.jpg" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Image.Style>
+                            </Image>
+                        </Button>
+                    </Grid>
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
         </Grid>
 </Window>

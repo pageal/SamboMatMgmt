@@ -31,9 +31,13 @@ namespace SamboMatMgmt
     public class ScoreDisplayViewModel : INotifyPropertyChanged
     {
         private DateTime    _the_time = new DateTime(0);
-        private bool        _is_counting = false;
-        private long        _FightTime;
-        private string      _currenttime;
+        private long   _FightLen;
+        private string _Weight;
+        private string _current_fight_time;
+        private string _special_clock_red;
+        private string _special_action_red;
+        private string _special_clock_blue;
+        private string _special_action_blue;
 
 
         //CompetitorRed
@@ -46,16 +50,68 @@ namespace SamboMatMgmt
 
         public ScoreDisplayViewModel()
         {
-            CurrentTime = _the_time.ToString("mm:ss");
+            FightClock = _the_time.ToString("mm:ss");
+            SpecialClockBlue = _the_time.ToString("mm:ss");
+            SpecialClockRed = _the_time.ToString("mm:ss");
         }
 
-        public bool isCounting
+        public string FightClock
         {
-            get { return _is_counting; }
+            get { return _current_fight_time; }
             set
             {
-                _is_counting = value;
-                OnPropertyChanged("isCounting");
+                _current_fight_time = value;
+                OnPropertyChanged("FightClock");
+            }
+        }
+
+        public string Weight
+        {
+            get { return _Weight; }
+            set
+            {
+                _Weight = value + " kg";
+                OnPropertyChanged("Weight");
+            }
+        }
+
+        public string SpecialClockBlue
+        {
+            get { return _special_clock_blue; }
+            set
+            {
+                _special_clock_blue = value;
+                OnPropertyChanged("SpecialClockBlue");
+            }
+        }
+
+        public string SpecialActionBlue
+        {
+            get { return _special_action_blue; }
+            set
+            {
+                _special_action_blue = value;
+                OnPropertyChanged("SpecialActionBlue");
+            }
+        }
+
+        public string SpecialClockRed
+        {
+            get { return _special_clock_red; }
+            set
+            {
+                _special_clock_red = value;
+                OnPropertyChanged("SpecialClockRed");
+            }
+        }
+
+        public string SpecialActionRed
+        {
+            get { return _special_action_red; }
+            set
+            {
+                _special_action_red = value;
+                OnPropertyChanged("SpecialActionRed");
             }
         }
 
@@ -99,23 +155,23 @@ namespace SamboMatMgmt
             }
         }
 
-        public long FightTime
+        public long FightLen
         {
-            get { return this._FightTime; }
+            get { return this._FightLen; }
             set
             {
-                _FightTime = value;
-                OnPropertyChanged("FightTime");
+                _FightLen = value;
+                OnPropertyChanged("FightLen");
             }
         }
 
-        public string CurrentTime
+        public string CurrentFightLen
         {
-            get { return _currenttime; }
+            get { return _current_fight_time; }
             set
             {
-                _currenttime = value;
-                OnPropertyChanged("CurrentTime");
+                _current_fight_time = value;
+                OnPropertyChanged("FightClock");
             }
         }
 

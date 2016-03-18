@@ -118,8 +118,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="start.jpg" />
-    <Resource Include="stop.jpg" />
+    <Resource Include="pics\start.jpg" />
+    <Resource Include="pics\stop.jpg" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
@@ -134,11 +134,24 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="minus.jpg" />
-    <Resource Include="plus.jpg" />
+    <Resource Include="pics\minus.jpg" />
+    <Resource Include="pics\plus.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="reset.jpg" />
+    <Resource Include="pics\reset.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="pics\medical.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="pics\hold.jpg" />
+    <Resource Include="pics\target.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="pics\stop_action.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="pics\stop_action_grey.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
