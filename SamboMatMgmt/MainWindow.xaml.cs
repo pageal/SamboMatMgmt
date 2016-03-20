@@ -32,6 +32,7 @@ namespace SamboMatMgmt
             this._ViewModel = new SamboMatMgmtViewModel((ScoreDisplayViewModel)_DisplayWin.DataContext);
             this.DataContext = this._ViewModel;
             this._DisplayWin.Show();
+            ResetSanctions();
         }
 
         private void ComboCompetitorRed_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -39,145 +40,264 @@ namespace SamboMatMgmt
             //this._ViewModel.CompetitorRedName = e;
 
         }
-        private void ComboCompetitorRed_LostFocus(object sender, RoutedEventArgs e)
-        {
-            var comboBox = (ComboBox)sender;
-            this._ViewModel.CompetitorRedName = comboBox.Text;
-            //comboBox.SelectedItem = newItem;
-        }
 
-        private void ComboCompetitorBlue_LostFocus(object sender, RoutedEventArgs e)
+        private void ResetFightLen()
         {
-            var comboBox = (ComboBox)sender;
-            this._ViewModel.CompetitorBlueName = comboBox.Text;
-            //comboBox.SelectedItem = newItem;
-        }
-
-        private void FightLen_LostFocus(object sender, RoutedEventArgs e)
-        {
-            var comboBox = (ComboBox)sender;
-            if (!String.IsNullOrEmpty(comboBox.Text))
+            if (!String.IsNullOrEmpty(BattleTime.Text))
             {
-                this._ViewModel.FightLen = (int)(Convert.ToDouble(comboBox.Text));
+                try
+                {
+                    this._ViewModel.FightLen = (int)(Convert.ToDouble(BattleTime.Text));
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Please enter valid fight length");
+                }
                 //comboBox.SelectedItem = newItem;
             }
+        }
+        private void FightLen_LostFocus(object sender, RoutedEventArgs e)
+        {
+            ResetFightLen();
         }
 
         // Score events for Red Fighter
         private void OnRedScoreReset(object sender, RoutedEventArgs e)
         {
-            _ViewModel.OnRedScoreReset(Convert.ToInt32(textBoxRedReset.Text));
+            try
+            {
+                _ViewModel.OnRedScoreReset(Convert.ToInt32(textBoxRedReset.Text));
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Please enter valid score reset value");
+            }
         }
 
         private void OnRedPlus1(object sender, RoutedEventArgs e)
         {
-            _ViewModel.OnRedScorePlus(Convert.ToInt32(textBoxRedPlus1.Text));
+            try
+            {
+                _ViewModel.OnRedScorePlus(Convert.ToInt32(textBoxRedPlus1.Text));
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Please enter valid number");
+            }
         }
 
         private void OnRedScorePlus2(object sender, RoutedEventArgs e)
         {
-            _ViewModel.OnRedScorePlus(Convert.ToInt32(textBoxRedPlus2.Text));
+            try
+            {
+                _ViewModel.OnRedScorePlus(Convert.ToInt32(textBoxRedPlus2.Text));
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Please enter valid number");
+            }
         }
 
         private void OnRedScorePlus4(object sender, RoutedEventArgs e)
         {
-            _ViewModel.OnRedScorePlus(Convert.ToInt32(textBoxRedPlus4.Text));
+            try
+            {
+                _ViewModel.OnRedScorePlus(Convert.ToInt32(textBoxRedPlus4.Text));
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Please enter valid number");
+            }
         }
 
         private void OnRedScoreMinus1(object sender, RoutedEventArgs e)
         {
-            _ViewModel.OnRedScoreMinus(Convert.ToInt32(textBoxRedMinus1.Text));
+            try
+            {
+                _ViewModel.OnRedScoreMinus(Convert.ToInt32(textBoxRedMinus1.Text));
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Please enter valid number");
+            }
         }
 
         // Score events for Blue Fighter
         private void OnBluePlus1(object sender, RoutedEventArgs e)
         {
-            _ViewModel.OnBlueScorePlus(Convert.ToInt32(textBoxBluePlus1.Text));
+            try
+            {
+                _ViewModel.OnBlueScorePlus(Convert.ToInt32(textBoxBluePlus1.Text));
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Please enter valid number");
+            }
         }
         private void OnBlueScorePlus2(object sender, RoutedEventArgs e)
         {
-            _ViewModel.OnBlueScorePlus(Convert.ToInt32(textBoxBluePlus2.Text));
+            try
+            {
+                _ViewModel.OnBlueScorePlus(Convert.ToInt32(textBoxBluePlus2.Text));
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Please enter valid number");
+            }
         }
         private void OnBlueScorePlus4(object sender, RoutedEventArgs e)
         {
-            _ViewModel.OnBlueScorePlus(Convert.ToInt32(textBoxBluePlus4.Text));
+            try
+            {
+                _ViewModel.OnBlueScorePlus(Convert.ToInt32(textBoxBluePlus4.Text));
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Please enter valid number");
+            }
         }
         private void OnBlueScoreMinus1(object sender, RoutedEventArgs e)
         {
-            _ViewModel.OnBlueScoreMinus(Convert.ToInt32(textBoxBlueMinus1.Text));
+            try
+            {
+                _ViewModel.OnBlueScoreMinus(Convert.ToInt32(textBoxBlueMinus1.Text));
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Please enter valid number");
+            }
         }
         private void OnBlueScoreReset(object sender, RoutedEventArgs e)
         {
-            _ViewModel.OnBlueScoreReset(Convert.ToInt32(textBoxBlueReset.Text));
+            try
+            {
+                _ViewModel.OnBlueScoreReset(Convert.ToInt32(textBoxBlueReset.Text));
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Please enter valid number");
+            }
         }
 
         private void OnActionHoldRed(object sender, RoutedEventArgs e)
         {
             _ViewModel.StopSpecialCountingRed();
-            _ViewModel.HandleTimeMax = Convert.ToInt32(textBoxHold.Text);
+
+            try
+            {
+                _ViewModel.HandleTimeMax = Convert.ToInt32(textBoxHold.Text);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Please enter valid number");
+            }
 
             _ViewModel.isCountingHandleRed = true;
-            _ViewModel.isCounting = false;
-            lblSpecialActionRed.Content = "HANDLE";
+            _ViewModel.SpecialTimeoutTypeRed = "HANDLE";
+            //_ViewModel.isCounting = false;
             //SetSpecialClockBackground("#FFD31A1A");
         }
 
         private void OnActionHoldBlue(object sender, RoutedEventArgs e)
         {
             _ViewModel.StopSpecialCountingBlue();
-            _ViewModel.HandleTimeMax = Convert.ToInt32(textBoxHoldBlue.Text);
+            try
+            {
+                _ViewModel.HandleTimeMax = Convert.ToInt32(textBoxHoldBlue.Text);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Please enter valid number");
+            }
             _ViewModel.isCountingHandleBlue = true;
-            _ViewModel.isCounting = false;
-            lblSpecialActionBlue.Content = "HANDLE";
+            _ViewModel.SpecialTimeoutTypeBlue = "HANDLE";
+            //_ViewModel.isCounting = false;
             //SetSpecialClockBackground("#FF1414DC");
         }
 
         private void OnActionPainRed(object sender, RoutedEventArgs e)
         {
             _ViewModel.StopSpecialCountingRed();
-            _ViewModel.PainTimeMax = Convert.ToInt32(textBoxPain.Text);
+            try
+            {
+                _ViewModel.PainTimeMax = Convert.ToInt32(textBoxPain.Text);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Please enter valid number");
+            }
             _ViewModel.isCountingPainRed = true;
-            lblSpecialActionRed.Content = "PAIN";
-            _ViewModel.isCounting = false;
+            _ViewModel.SpecialTimeoutTypeRed = "PAIN";
+            //_ViewModel.isCounting = false;
             //SetSpecialClockBackground("#FFD31A1A");
         }
 
         private void OnActionPainBlue(object sender, RoutedEventArgs e)
         {
             _ViewModel.StopSpecialCountingBlue();
-            _ViewModel.PainTimeMax = Convert.ToInt32(textBoxPainBlue.Text);
+            try
+            {
+                _ViewModel.PainTimeMax = Convert.ToInt32(textBoxPainBlue.Text);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Please enter valid number");
+            }
             _ViewModel.isCountingPainBlue = true;
-            lblSpecialActionBlue.Content = "PAIN";
-            _ViewModel.isCounting = false;
+            _ViewModel.SpecialTimeoutTypeBlue = "PAIN";
+            //_ViewModel.isCounting = false;
             //SetSpecialClockBackground("#FF1414DC");
         }
 
         private void OnActionMedicalRed(object sender, RoutedEventArgs e)
         {
-            lblSpecialActionRed.Content = "MEDICAL";
-            _ViewModel.OnActionMedicalRed(Convert.ToInt32(textBoxMedical.Text));
+            try
+            {
+                _ViewModel.OnActionMedicalRed(Convert.ToInt32(textBoxMedical.Text));
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Please enter valid number");
+            }
             //SetSpecialClockBackground("#FFD31A1A");
         }
 
         private void OnActionMedicalBlue(object sender, RoutedEventArgs e)
         {
             _ViewModel.StopSpecialCountingBlue();
-            _ViewModel.OnActionMedicalBlue(Convert.ToInt32(textBoxMedicalBlue.Text));
+            try
+            {
+                _ViewModel.OnActionMedicalBlue(Convert.ToInt32(textBoxMedicalBlue.Text));
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Please enter valid number");
+            }
             //SetSpecialClockBackground("#FF1414DC");
         }
 
         private void OnSpecialActionStopRed(object sender, RoutedEventArgs e)
         {
             _ViewModel.StopSpecialCountingRed();
-            if(_ViewModel.isCountingSpecial)
-                _ViewModel.isCounting = true;
         }
+
+        private void OnSpecialActionResetRed(object sender, RoutedEventArgs e)
+        {
+            _ViewModel.StopSpecialCountingRed();
+            _ViewModel.ResetClocksRed();
+        }
+
+        private void OnSpecialActionResetBlue(object sender, RoutedEventArgs e)
+        {
+            _ViewModel.StopSpecialCountingBlue();
+            _ViewModel.ResetClocksBlue();
+        }
+
 
         private void OnSpecialActionStopBlue(object sender, RoutedEventArgs e)
         {
             _ViewModel.StopSpecialCountingBlue();
-            if (_ViewModel.isCountingSpecial)
-                _ViewModel.isCounting = true;
         }
 
         private void SetSpecialClockBackground(String color)
@@ -194,7 +314,11 @@ namespace SamboMatMgmt
             _ViewModel.isCounting = false;
             _ViewModel.OnRedScoreReset(0);
             _ViewModel.OnBlueScoreReset(0);
-            _ViewModel.ResetClocks();
+            _ViewModel.ResetFight();
+            ResetFightLen();
+            ComboCompetitorBlue.Text = "";
+            ComboCompetitorRed.Text = "";
+            ResetSanctions();
         }
 
         private void OnWeightEditKeyIp(object sender, KeyEventArgs e)
@@ -202,10 +326,88 @@ namespace SamboMatMgmt
             var comboBox = (ComboBox)sender;
             if (!String.IsNullOrEmpty(comboBox.Text))
             {
-                this._ViewModel.Weight = (int)(Convert.ToDouble(comboBox.Text));
+                try
+                {
+                    this._ViewModel.Weight = (int)(Convert.ToDouble(comboBox.Text));
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Please enter valid weight");
+                }
                 //comboBox.SelectedItem = newItem;
             }
         }
+
+        private void OnActivityPlusRed(object sender, RoutedEventArgs e)
+        {
+            this._ViewModel.ActivityRed += 1;
+        }
+
+        private void OnActivityMinusRed(object sender, RoutedEventArgs e)
+        {
+            if(this._ViewModel.ActivityRed > 0)
+                this._ViewModel.ActivityRed -= 1;
+        }
+
+        private void OnActivityResetRed(object sender, RoutedEventArgs e)
+        {
+            this._ViewModel.ActivityRed = 0;
+        }
+
+        private void OnActivityPlusBlue(object sender, RoutedEventArgs e)
+        {
+            this._ViewModel.ActivityBlue += 1;
+        }
+
+        private void OnActivityMinusBlue(object sender, RoutedEventArgs e)
+        {
+            if(this._ViewModel.ActivityBlue > 0)
+                this._ViewModel.ActivityBlue -= 1;
+        }
+
+        private void OnActivityResetBlue(object sender, RoutedEventArgs e)
+        {
+            this._ViewModel.ActivityBlue = 0;
+        }
+
+        private void ComboCompetitorRed_KeyUp(object sender, KeyEventArgs e)
+        {
+            var comboBox = (ComboBox)sender;
+            this._ViewModel.CompetitorRedName = comboBox.Text;
+        }
+
+        private void ComboCompetitorBlue_KeyUp(object sender, KeyEventArgs e)
+        {
+            var comboBox = (ComboBox)sender;
+            this._ViewModel.CompetitorBlueName = comboBox.Text;
+        }
+        public void OnSanctionRed(object sender, RoutedEventArgs e)
+        {
+            if(((Button)sender).Background != Brushes.Yellow)
+                this._ViewModel.IncrementSanctionRed();
+            ((Button)sender).Background = Brushes.Yellow;
+        }
+        public void OnSanctionBlue(object sender, RoutedEventArgs e)
+        {
+            if (((Button)sender).Background != Brushes.Yellow)
+                this._ViewModel.IncrementSanctionBlue();
+            ((Button)sender).Background = Brushes.Yellow;
+        }
+
+
+        private void ResetSanctions()
+        {
+            buttonZRed.Background = Brushes.White;
+            buttonIRed.Background = Brushes.White;
+            buttonIIRed.Background = Brushes.White;
+            buttonDisRed.Background = Brushes.White;
+            buttonZBlue.Background = Brushes.White;
+            buttonIBlue.Background = Brushes.White;
+            buttonIIBlue.Background = Brushes.White;
+            buttonDisBlue.Background = Brushes.White;
+            _ViewModel.ResetSanctions();
+        }
+
     }
 
 
@@ -213,14 +415,18 @@ namespace SamboMatMgmt
     {
         public class Fighter
         {
-            public Fighter()
+            public Fighter(String fighter_color)
             {
+                this.color = fighter_color;
                 StopSpecialCounting();
             }
 
             public String Name = "";
+            public String color = "";
             public long score = 0;
+            public long activity = 0;
 
+            public String special_timeout_type = "";
             public bool is_counting_medical = false;
             public bool is_counting_handle = false;
             public bool is_counting_pain = false;
@@ -232,6 +438,7 @@ namespace SamboMatMgmt
             public string current_special_time;
             public string special_clock;
             public string special_action;
+            public long sanction = 0;
             public bool IsSpecialCountOn() { return (is_counting_medical | is_counting_handle | is_counting_pain); }
             public void StopSpecialCounting() { is_counting_medical = is_counting_handle = is_counting_pain = false;  }
         
@@ -240,14 +447,15 @@ namespace SamboMatMgmt
         private bool _is_counting_fight = false;
         private string _current_fight_time;
 
-        private Fighter _bf = new Fighter(); //Blue fighter
-        private Fighter _rf = new Fighter(); //Red fighter
+        private Fighter _bf = new Fighter("BLUE"); //Blue fighter
+        private Fighter _rf = new Fighter("RED"); //Red fighter
 
         private DateTime _the_time;
         private long _FightLen = 180;
         private long _Weight = 20;
         public  long PainTimeMax = 60;
         public  long HandleTimeMax = 20;
+        private long _handle_cost = 2;
 
         private RelayCommand _playCommand;
         private ScoreDisplayViewModel _DisplayWin;
@@ -261,8 +469,95 @@ namespace SamboMatMgmt
             timer.Tick += UpdateTime;
             timer.Start();
 
-            ResetClocks();
+            ResetFight();
             Weight = _Weight;
+            FightLen = _FightLen;
+        }
+
+        public void ResetSanctions()
+        {
+            _rf.sanction = 0;
+            _bf.sanction = 0;
+            _DisplayWin.ResetSanctions();
+        }
+
+        public void IncrementSanctionRed()
+        {
+            switch (_rf.sanction)
+            {
+                case 0:
+                    _DisplayWin.SanctionZRed = "Z";
+                    break;
+                case 1:
+                    {
+                        _DisplayWin.SanctionIRed = "I";
+                        OnBlueScorePlus(1);
+                        break;
+                    }
+                case 2:
+                    {
+                        _DisplayWin.SanctionIIRed = "II";
+                        OnBlueScorePlus(2);
+                        break;
+                    }
+                case 3:
+                    {
+                        _DisplayWin.SanctionDisRed = "DIS";
+                        isCounting = false;
+                        break;
+                    }
+            }
+            _rf.sanction += 1;
+        }
+    public void IncrementSanctionBlue()
+        {
+            switch (_bf.sanction)
+            {
+                case 0:
+                    _DisplayWin.SanctionZBlue = "Z";
+                    break;
+                case 1:
+                    {
+                        _DisplayWin.SanctionIBlue = "I";
+                        OnRedScorePlus(1);
+                        break;
+                    }
+                case 2:
+                    {
+                        _DisplayWin.SanctionIIBlue = "II";
+                        OnRedScorePlus(2);
+                        break;
+                    }
+                case 3:
+                    {
+                        _DisplayWin.SanctionDisBlue = "DIS";
+                        isCounting = false;
+                        break;
+                    }
+            }
+            _bf.sanction += 1;
+        }
+
+        public String SpecialTimeoutTypeRed
+        {
+            get { return this._rf.special_timeout_type; }
+            set
+            {
+                this._rf.special_timeout_type = value;
+                _DisplayWin.SpecialActionRed = this._rf.special_timeout_type;
+                OnPropertyChanged("SpecialTimeoutTypeRed");
+            }
+        }
+
+        public String SpecialTimeoutTypeBlue
+        {
+            get { return this._bf.special_timeout_type; }
+            set
+            {
+                this._bf.special_timeout_type = value;
+                _DisplayWin.SpecialActionBlue = this._bf.special_timeout_type;
+                OnPropertyChanged("SpecialTimeoutTypeBlue");
+            }
         }
 
         public void OnActionMedicalRed(Int32 time)
@@ -271,6 +566,7 @@ namespace SamboMatMgmt
             _rf.MedicalTime = time;
             isCountingMedicalRed = true;
             isCounting = false;
+            SpecialTimeoutTypeRed = "MEDICAL";
         }
 
         public void OnActionMedicalBlue(Int32 time)
@@ -279,21 +575,42 @@ namespace SamboMatMgmt
             _bf.MedicalTime = time;
             isCountingMedicalBlue = true;
             isCounting = false;
+            SpecialTimeoutTypeBlue = "MEDICAL";
         }
 
-        public void ResetClocks()
+        public void ResetFight()
         {
             FightClock = new DateTime(0).ToString("mm:ss");
-            SpecialClockRed = new DateTime(0).ToString("mm:ss");
-            SpecialClockBlue = new DateTime(0).ToString("mm:ss");
+            ResetClocksRed();
+            ResetClocksBlue();
+            CompetitorRedName = "";
+            CompetitorBlueName = "";
+            ResetSanctions();
+            ActivityRed = 0;
+            ActivityBlue = 0;
         }
+
+        public void ResetClocksRed()
+        {
+            SpecialClockRed = new DateTime(0).ToString("mm:ss");
+            SpecialTimeoutTypeRed = "      ";
+        }
+
+        public void ResetClocksBlue()
+        {
+            SpecialClockBlue = new DateTime(0).ToString("mm:ss");
+            SpecialTimeoutTypeBlue = "      ";
+        }
+
         public String CompetitorRedName
         {
             get { return this._rf.Name; }
             set
             {
                 this._rf.Name = value;
-                _DisplayWin.CompetitorRedName = this._rf.Name;
+                OnPropertyChanged("CompetitorRedName");
+                if(_DisplayWin != null)
+                    _DisplayWin.CompetitorRedName = this._rf.Name;
             }
         }
 
@@ -303,19 +620,47 @@ namespace SamboMatMgmt
             set
             {
                 this._bf.Name = value;
+                OnPropertyChanged("CompetitorBlueName");
                 _DisplayWin.CompetitorBlueName = _bf.Name;
             }
         }
 
-        public String ScoreRed
+        public long HandleCost
         {
-            get { String score = this._rf.score.ToString(); _DisplayWin.ScoreRed = score; return score; }
+            get { return this._handle_cost; }
+            set
+            {
+
+                _handle_cost = value;
+                OnPropertyChanged("HandleCost");
+            }
         }
 
-        public String ScoreBlue
+        public long ScoreRed
         {
-            get { String score = this._bf.score.ToString(); _DisplayWin.ScoreBlue = score;  return score; }
-            
+            get { return this._rf.score; }
+            set
+            {
+
+                _rf.score = value;
+                OnPropertyChanged("ScoreRed");
+
+                if (_DisplayWin != null)
+                    _DisplayWin.ScoreRed = this._rf.score.ToString();
+            }
+        }
+
+        public long ScoreBlue
+        {
+            get { return this._bf.score; }
+            set {
+
+                _bf.score = value;
+                OnPropertyChanged("ScoreBlue");
+
+                if (_DisplayWin != null)
+                    _DisplayWin.ScoreBlue = this._bf.score.ToString();
+            }
         }
 
         public bool isCounting
@@ -396,7 +741,7 @@ namespace SamboMatMgmt
 
         public bool isCountingSpecial
         {
-            get { return (_rf.is_counting_medical | _rf.is_counting_handle | _rf.is_counting_pain | _bf.is_counting_medical | _bf.is_counting_handle | _bf.is_counting_pain); }
+            get { return (_rf.IsSpecialCountOn() | _bf.IsSpecialCountOn()); }
         }
 
         public bool isCountingSpecialRed
@@ -455,7 +800,9 @@ namespace SamboMatMgmt
             set
             {
                 this._FightLen = value;
-                _DisplayWin.FightLen = this._FightLen;
+                OnPropertyChanged("FightLen");
+                if (this._DisplayWin != null)
+                    _DisplayWin.FightLen = this._FightLen;
             }
         }
 
@@ -465,7 +812,9 @@ namespace SamboMatMgmt
             set
             {
                 this._Weight = value;
-                _DisplayWin.Weight = this._Weight.ToString();
+                OnPropertyChanged("Weight");
+                if (this._DisplayWin != null)
+                    _DisplayWin.Weight = this._Weight.ToString();
             }
         }
 
@@ -511,6 +860,9 @@ namespace SamboMatMgmt
             {
                 if (fighter.MedicalTime > 0)
                     fighter.MedicalTime -= 1;
+                else
+                    fighter.StopSpecialCounting();
+
 
                 _the_time = new DateTime(fighter.MedicalTime * 10000000);
                 return _the_time.ToString("mm:ss");
@@ -519,6 +871,15 @@ namespace SamboMatMgmt
             {
                 if (fighter.HandleTime < HandleTimeMax)
                     fighter.HandleTime += 1;
+                else
+                {
+                    fighter.StopSpecialCounting();
+                    //isCounting = false;
+                    //MessageBox.Show(String.Format("The {0} competitor will receive {1} points.", fighter.color, _handle_cost));
+                    fighter.score += _handle_cost;
+                    ScoreBlue = _bf.score;
+                    ScoreRed = _rf.score;
+                }
 
                 _the_time = new DateTime(fighter.HandleTime * 10000000);
                 return _the_time.ToString("mm:ss");
@@ -527,6 +888,10 @@ namespace SamboMatMgmt
             {
                 if (fighter.PainTime < PainTimeMax)
                     fighter.PainTime += 1;
+                else
+                {
+                    fighter.StopSpecialCounting();
+                }
 
                 _the_time = new DateTime(fighter.PainTime * 10000000);
                 return _the_time.ToString("mm:ss");
@@ -546,56 +911,76 @@ namespace SamboMatMgmt
                 FightClock = _the_time.ToString("mm:ss");
             }
 
-            if(_rf.IsSpecialCountOn())
+            if (_rf.IsSpecialCountOn())
+            {
                 SpecialClockRed = UpdateSpecialTime(sender, e, _rf);
+                if (!_rf.IsSpecialCountOn())
+                    StopSpecialCountingRed();
+            }
 
             if (_bf.IsSpecialCountOn())
+            {
                 SpecialClockBlue = UpdateSpecialTime(sender, e, _bf);
+                if (!_bf.IsSpecialCountOn())
+                    StopSpecialCountingBlue();
+            }
         }
 
         public void OnRedScoreReset(int val)
         {
-            _rf.score = val;
-            OnPropertyChanged("ScoreRed");
-
+            ScoreRed = val;
         }
 
         public void OnRedScorePlus(int increment)
         {
-            _rf.score += increment;
-            OnPropertyChanged("ScoreRed");
-
+            ScoreRed += increment;
         }
 
         public void OnRedScoreMinus(int increment)
         {
-            _rf.score -= increment;
-            if (_rf.score < 0)
-                _rf.score = 0;
-            OnPropertyChanged("ScoreRed");
-
+            if (ScoreRed > 0)
+                ScoreRed -= increment;
         }
 
         public void OnBlueScoreReset(int val)
         {
-            _bf.score = val;
-            OnPropertyChanged("ScoreBlue");
-
+            ScoreBlue = val;
         }
 
         public void OnBlueScorePlus(int increment)
         {
-            _bf.score += increment;
-            OnPropertyChanged("ScoreBlue");
-
+            ScoreBlue += increment;
         }
 
         public void OnBlueScoreMinus(int increment)
         {
-            _bf.score -= increment;
-            if (_bf.score < 0)
-                _bf.score = 0;
-            OnPropertyChanged("ScoreBlue");
+            if (ScoreBlue > 0)
+                ScoreBlue -= increment;
+        }
+
+
+        public long ActivityRed
+        {
+            get { return _rf.activity; }
+            set
+            {
+                _rf.activity = value;
+                OnPropertyChanged("ActivityRed");
+                if (this._DisplayWin != null)
+                    _DisplayWin.ActivityRed = _rf.activity.ToString();
+            }
+        }
+
+        public long ActivityBlue
+        {
+            get { return _bf.activity; }
+            set
+            {
+                _bf.activity = value;
+                OnPropertyChanged("ActivityBlue");
+                if (this._DisplayWin != null)
+                    _DisplayWin.ActivityBlue = _bf.activity.ToString();
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

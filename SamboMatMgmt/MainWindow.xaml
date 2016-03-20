@@ -6,7 +6,11 @@
         xmlns:local="clr-namespace:SamboMatMgmt"
         xmlns:Properties="clr-namespace:SamboMatMgmt.Properties" x:Class="SamboMatMgmt.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="700" Width="1200">
+        Title="MainWindow" Height="700" Width="1200"
+        Icon="pics/wcsf.jpg">
+        <Window.InputBindings>
+            <KeyBinding Modifiers="Ctrl" Key="Space" Command="{Binding FightCommand}" />
+        </Window.InputBindings>
         <Grid x:Name="ScoreGrid" Margin="10,10,10,10" HorizontalAlignment="Stretch" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
@@ -17,7 +21,7 @@
             <Rectangle Grid.Column="1" Fill="Black"/>
             <Rectangle Grid.Column="2" Fill="#FF1414DC" HorizontalAlignment="Stretch"/>
             
-            <StackPanel Grid.Column="1">
+            <StackPanel Grid.Column="1" VerticalAlignment="Stretch">
                 <Grid x:Name="MainButtons" Margin="10,10,10,10" HorizontalAlignment="Stretch" Grid.ColumnSpan="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
@@ -54,6 +58,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Label x:Name="labelWeight" Content="Weight:" Grid.Row="0" Grid.Column="0" Margin="0,10,0,10" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="16" FontFamily="Arial" FontWeight="Bold" Foreground="#FFF9F7F7"/>
                     <ComboBox x:Name="Weight" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" Margin="10,10,10,10" Text="20" IsEditable="True" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" LostFocus="FightLen_LostFocus" KeyUp="OnWeightEditKeyIp"/>
@@ -61,15 +66,21 @@
                     <Label x:Name="labelFightLen" Content="Fight Length:" Grid.Row="1" Grid.Column="0" Margin="0,10,0,10" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="16" FontFamily="Arial" FontWeight="Bold" Foreground="#FFF9F7F7"/>
                     <ComboBox x:Name="BattleTime" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" Margin="10,10,10,10" Text="180" IsEditable="True" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" LostFocus="FightLen_LostFocus"/>
                     <Label x:Name="labelSec" Content="sec" Grid.Row="1" Grid.Column="3" Margin="0,10,0,10" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="16" FontFamily="Arial" FontWeight="Bold" Foreground="#FFF9F7F7"/>
+                    <Label x:Name="labelHoldPoints" Content="Handle:" Grid.Row="2" Grid.Column="0" Margin="0,10,0,10" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="16" FontFamily="Arial" FontWeight="Bold" Foreground="#FFF9F7F7"/>
+                    <ComboBox x:Name="PointsForHold" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" Margin="10,10,10,10" Text="{Binding HandleCost}" IsEditable="True" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+                    <Label x:Name="labelPoints" Content="points" Grid.Row="2" Grid.Column="3" Margin="0,10,0,10" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="16" FontFamily="Arial" FontWeight="Bold" Foreground="#FFF9F7F7"/>
             </Grid>
                 <Label x:Name="lblFightTime" Grid.Column="1" Content="Fight Clock:" FontSize="22" HorizontalAlignment="Stretch" Margin="10,20,10,0" VerticalAlignment="Top" Foreground="#FFF7F6F6" FontFamily="Arial Black" Background="#FF767171"/>
                 <Label x:Name="lblTimeClock" Grid.Column="1" Content="{Binding FightClock}" FontSize="72" HorizontalAlignment="Stretch" Margin="10,0,10,0" VerticalAlignment="Top" Foreground="#FFF7F6F6" FontFamily="Arial Black" FontWeight="Bold" Background="#FF767171"/>
-            </StackPanel>
+        </StackPanel>
+        <Image Source="pics/wcsf.jpg" Grid.Column="1" HorizontalAlignment="Left" Height="125" Margin="0,0,0,0" VerticalAlignment="Bottom" Width="125"/>
+        <Image Source="pics/massa_logo_125.jpg" Grid.Column="1" HorizontalAlignment="Right" Height="125" Margin="0,0,0,0" VerticalAlignment="Bottom" Width="125"/>
 
-            <Label x:Name="labelCompetitorRed" Content="Competitor:" Grid.Column="0" Margin="10,10,10,10" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="16" FontFamily="Arial" FontWeight="Bold"/>
-            <ComboBox x:Name="ComboCompetitorRed" Grid.Column="0" Margin="150,10,10,10" VerticalAlignment="Top" HorizontalAlignment="Stretch" IsEditable="True" FontWeight="Bold" FontSize="16" FontFamily="Arial" SelectionChanged="ComboCompetitorRed_SelectionChanged" LostFocus="ComboCompetitorRed_LostFocus"/>
+
+        <Label x:Name="labelCompetitorRed" Content="Competitor:" Grid.Column="0" Margin="10,10,10,10" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="16" FontFamily="Arial" FontWeight="Bold"/>
+        <ComboBox x:Name="ComboCompetitorRed" Text="{Binding Path=CompetitorNameRed}" Grid.Column="0" Margin="150,10,10,10" VerticalAlignment="Top" HorizontalAlignment="Stretch" IsEditable="True" FontWeight="Bold" FontSize="16" FontFamily="Arial" SelectionChanged="ComboCompetitorRed_SelectionChanged" KeyUp="ComboCompetitorRed_KeyUp"/>
             <Label x:Name="labelCompetitorBlue" Content="Competitor:" Grid.Column="2" Margin="10,10,10,10" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" FontSize="16" FontFamily="Arial"/>
-            <ComboBox x:Name="ComboCompetitorBlue" Grid.Column="2" Margin="150,10,10,10" VerticalAlignment="Top" HorizontalAlignment="Stretch" IsEditable="True" FontWeight="Bold" FontSize="16" FontFamily="Arial" LostFocus="ComboCompetitorBlue_LostFocus"/>
+        <ComboBox x:Name="ComboCompetitorBlue" Text="{Binding Path=CompetitorNameBlue}" Grid.Column="2" Margin="150,10,10,10" VerticalAlignment="Top" HorizontalAlignment="Stretch" IsEditable="True" FontWeight="Bold" FontSize="16" FontFamily="Arial" KeyUp="ComboCompetitorBlue_KeyUp"/>
             <StackPanel Grid.Column="0">
                 <GroupBox x:Name="GroupScoreRed" Grid.Column="0" Header="Score" HorizontalAlignment="Stretch" Margin="10,50,10,10" VerticalAlignment="Top" Foreground="#FF780C0C" FontSize="22" FontWeight="Bold" BorderBrush="#FF9B2B0B">
                     <GroupBox.Effect>
@@ -130,9 +141,10 @@
                                 <ColumnDefinition  Width="Auto"/>
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition />
                                 <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
@@ -155,12 +167,12 @@
                             </StackPanel>
                         </Button>
                         <StackPanel Grid.Column="3">
-                            <Label x:Name="lblSpecialTimeRed"  Content="Special Clock:" FontSize="16" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Top" Foreground="#FFF7F6F6" FontFamily="Arial" Background="#FF767171"/>
-                            <Label x:Name="lblSpecialClockRed" Content="{Binding SpecialClockRed}" FontSize="22" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Top" Foreground="#FFF7F6F6" FontFamily="Arial" FontWeight="Bold" Background="#FF767171"/>
-                            <Label x:Name="lblSpecialActionRed" Content="" FontSize="16" Margin="0,0,0,0" VerticalAlignment="Top" Foreground="#FFF7F6F6" FontFamily="Arial" Background="#FF767171"/>
+                            <Label x:Name="lblSpecialTimeRed"  Content="Clock:" FontSize="16" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Top" Foreground="#FFF7F6F6" FontFamily="Arial" Background="#FF767171"/>
+                            <Label x:Name="SpecialClockRed" Content="{Binding SpecialClockRed}" FontSize="16" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Top" Foreground="#FFF7F6F6" FontFamily="Arial" FontWeight="Bold" Background="#FF767171"/>
+                            <Label x:Name="SpecialTimeoutTypeRed" Content="{Binding SpecialTimeoutTypeRed}" FontSize="16" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Top" Foreground="#FFF7F6F6" FontFamily="Arial" Background="#FF767171"/>
                         </StackPanel>
 
-                        <Button x:Name="buttonStopSpecialActionRed" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,30,10,0" ToolTip="Stop" Click="OnSpecialActionStopRed">
+                        <Button x:Name="buttonStopSpecialActionRed" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,30,10,0" ToolTip="Stop" Click="OnSpecialActionStopRed">
                             <Image Name="buttonStopSpecialActionRedImage">
                                 <Image.Style>
                                     <Style TargetType="{x:Type Image}">
@@ -176,10 +188,86 @@
                                 </Image.Style>
                             </Image>
                         </Button>
+                        <Button x:Name="buttonResetSpecialRed" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,30,10,0" Click="OnSpecialActionResetRed" ToolTip="Reset Timers">
+                            <StackPanel>
+                                <Image Source="pics/reset.jpg" ToolTip="Reset Timers"/>
+                            </StackPanel>
+                        </Button>
                     </Grid>
                     </StackPanel>
                 </GroupBox>
-            </StackPanel>
+                <GroupBox x:Name="ActivityRed" Grid.Column="0" Header="Activity count" HorizontalAlignment="Stretch" Margin="10,0,10,10" VerticalAlignment="Top" Foreground="#FF780C0C" FontSize="22" FontWeight="Bold" BorderBrush="#FF9B2B0B">
+                    <GroupBox.Effect>
+                        <DropShadowEffect Color="#FFD12222" BlurRadius="10" ShadowDepth="10"/>
+                    </GroupBox.Effect>
+                    <Grid Margin="10,10,10,10" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Grid.ColumnSpan="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition  Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Button x:Name="buttonActivityPlusRed" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,0,10,0" ToolTip="Increment Activity" Click="OnActivityPlusRed">
+                            <StackPanel>
+                                <Image Source="pics/plus.jpg"/>
+                            </StackPanel>
+                        </Button>
+                    <Label x:Name="labelActivityRed" Grid.Column="1" HorizontalAlignment="Right" FontSize="30"  Margin="10,0,0,0" Content="A:" VerticalAlignment="Center"  Background="#FF767171"/>
+                    <Label x:Name="labelActivityCountRed" Grid.Column="2" HorizontalAlignment="Right" FontSize="30"  Margin="0,0,10,0" Content="{Binding ActivityRed}" VerticalAlignment="Stretch"  Background="#FF767171"/>
+                        <Button x:Name="buttonActivityMinusRed" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,0,10,0" Click="OnActivityMinusRed" ToolTip="Decrement Activity">
+                            <StackPanel>
+                                <Image Source="pics/minus.jpg"/>
+                            </StackPanel>
+                        </Button>
+                        <Button x:Name="buttonActivityResetRed" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,0,10,0" Click="OnActivityResetRed" ToolTip="Reset">
+                            <StackPanel>
+                                <Image Source="pics/reset.jpg"/>
+                            </StackPanel>
+                        </Button>
+                </Grid>
+            </GroupBox>
+            <GroupBox x:Name="SanctionsRed" Grid.Column="0" Header="Sanctions" HorizontalAlignment="Stretch" Margin="10,0,10,10" VerticalAlignment="Top" Foreground="#FF780C0C" FontSize="22" FontWeight="Bold" BorderBrush="#FF9B2B0B">
+                <GroupBox.Effect>
+                    <DropShadowEffect Color="#FFD12222" BlurRadius="10" ShadowDepth="10"/>
+                </GroupBox.Effect>
+                <Grid Margin="10,10,10,10" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Grid.ColumnSpan="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition  Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Button x:Name="buttonZRed" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,0,10,0" ToolTip="Warning" Click="OnSanctionRed">
+                        <StackPanel>
+                            <Label Content="Z"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="buttonIRed" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,0,10,0" ToolTip="First Punishment" Click="OnSanctionRed">
+                        <StackPanel>
+                            <Label Content="I"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="buttonIIRed" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,0,10,0" ToolTip="Second Punishment" Click="OnSanctionRed">
+                        <StackPanel>
+                            <Label Content="II"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="buttonDisRed" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,0,10,0" ToolTip="Discualification" Click="OnSanctionRed">
+                        <StackPanel>
+                            <Label Content="DIS"/>
+                        </StackPanel>
+                    </Button>
+                </Grid>
+            </GroupBox>
+
+        </StackPanel>
             <StackPanel Grid.Column="2">
                 <GroupBox x:Name="GroupScoreBlue" Grid.Column="2" Header="Score" HorizontalAlignment="Stretch" Margin="10,50,10,10" VerticalAlignment="Top" Foreground="#FF0B186C" FontSize="22" FontWeight="Bold" BorderBrush="#FF151A95">
                     <GroupBox.Effect>
@@ -230,9 +318,9 @@
                         </Grid>
                     </StackPanel>
                 </GroupBox>
-            <GroupBox x:Name="SpecialActionsBlue" Grid.Column="0" Header="Special Action Timers (sec)" HorizontalAlignment="Stretch" Margin="10,0,10,10" VerticalAlignment="Top" Foreground="#FF780C0C" FontSize="22" FontWeight="Bold" BorderBrush="#FF9B2B0B">
+            <GroupBox x:Name="SpecialActionsBlue" Grid.Column="0" Header="Special Action Timers (sec)" HorizontalAlignment="Stretch" Margin="10,0,10,10" VerticalAlignment="Top" Foreground="#FF0B186C" FontSize="22" FontWeight="Bold" BorderBrush="#FF151A95">
                 <GroupBox.Effect>
-                    <DropShadowEffect Color="#FFD12222" BlurRadius="10" ShadowDepth="10"/>
+                    <DropShadowEffect Color="#FF163997" BlurRadius="10" ShadowDepth="10"/>
                 </GroupBox.Effect>
                 <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Bottom">
                     <Grid Margin="10,10,10,10" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Grid.ColumnSpan="3">
@@ -240,7 +328,8 @@
                             <ColumnDefinition  Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
                         <TextBox x:Name="textBoxHoldBlue" Grid.Column="0" HorizontalAlignment="Left" FontSize="16"  Margin="10,0,10,10" TextWrapping="NoWrap" Text="20" VerticalAlignment="Top" Width="50"/>
@@ -262,11 +351,11 @@
                             </StackPanel>
                         </Button>
                         <StackPanel Grid.Column="3">
-                            <Label x:Name="lblSpecialTimeBlue"  Content="Special Clock:" FontSize="16" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Top" Foreground="#FFF7F6F6" FontFamily="Arial" Background="#FF767171"/>
-                            <Label x:Name="lblSpecialClockBlue" Content="{Binding SpecialClockBlue}" FontSize="22" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Top" Foreground="#FFF7F6F6" FontFamily="Arial" FontWeight="Bold" Background="#FF767171"/>
-                            <Label x:Name="lblSpecialActionBlue" Content="" FontSize="16" Margin="0,0,0,0" VerticalAlignment="Top" Foreground="#FFF7F6F6" FontFamily="Arial" Background="#FF767171"/>
+                            <Label x:Name="lblSpecialTimeBlue"  Content="Clock:" FontSize="16" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Top" Foreground="#FFF7F6F6" FontFamily="Arial" Background="#FF767171"/>
+                            <Label x:Name="SpecialClockBlue" Content="{Binding SpecialClockBlue}" FontSize="16" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Top" Foreground="#FFF7F6F6" FontFamily="Arial" FontWeight="Bold" Background="#FF767171"/>
+                            <Label x:Name="SpecialTimeoutTypeBlue" Content="{Binding SpecialTimeoutTypeBlue}" FontSize="16" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Top" Foreground="#FFF7F6F6" FontFamily="Arial" Background="#FF767171"/>
                         </StackPanel>
-                        <Button x:Name="buttonStopSpecialActionBlue" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,30,10,0" ToolTip="Stop" Click="OnSpecialActionStopBlue">
+                        <Button x:Name="buttonStopSpecialActionBlue" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,30,10,0" ToolTip="Stop" Click="OnSpecialActionStopBlue">
                             <Image Name="buttonStopSpecialActionImageBlue">
                                 <Image.Style>
                                     <Style TargetType="{x:Type Image}">
@@ -282,9 +371,85 @@
                                 </Image.Style>
                             </Image>
                         </Button>
+                        <Button x:Name="buttonResetSpecialBlue" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,30,10,0" Click="OnSpecialActionResetBlue" ToolTip="Reset Timers">
+                            <StackPanel>
+                                <Image Source="pics/reset.jpg" ToolTip="Reset Timers"/>
+                            </StackPanel>
+                        </Button>
+
                     </Grid>
                 </StackPanel>
             </GroupBox>
+            <GroupBox x:Name="ActivityBlue" Grid.Column="0" Header="Activity count" HorizontalAlignment="Stretch" Margin="10,0,10,10" VerticalAlignment="Top" Foreground="#FF0B186C" FontSize="22" FontWeight="Bold" BorderBrush="#FF151A95">
+                <GroupBox.Effect>
+                    <DropShadowEffect Color="#FF163997" BlurRadius="10" ShadowDepth="10"/>
+                </GroupBox.Effect>
+                <Grid Margin="10,10,10,10" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Grid.ColumnSpan="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition  Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Button x:Name="buttonActivityPlusBlue" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,0,10,0" ToolTip="Increment Activity" Click="OnActivityPlusBlue">
+                        <StackPanel>
+                            <Image Source="pics/plus.jpg"/>
+                        </StackPanel>
+                    </Button>
+                    <Label x:Name="labelActivityBlue" Grid.Column="1" HorizontalAlignment="Right" FontSize="30"  Margin="10,0,0,0" Content="A:" VerticalAlignment="Center"  Background="#FF767171"/>
+                    <Label x:Name="labelActivityCountBlue" Grid.Column="2" HorizontalAlignment="Right" FontSize="30"  Margin="0,0,10,0" Content="{Binding ActivityBlue}" VerticalAlignment="Stretch"  Background="#FF767171"/>
+                    <Button x:Name="buttonActivityMinusBlue" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,0,10,0" Click="OnActivityMinusBlue" ToolTip="Decrement Activity">
+                        <StackPanel>
+                            <Image Source="pics/minus.jpg"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="buttonActivityResetBlue" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,0,10,0" Click="OnActivityResetBlue" ToolTip="Reset">
+                        <StackPanel>
+                            <Image Source="pics/reset.jpg"/>
+                        </StackPanel>
+                    </Button>
+                </Grid>
+            </GroupBox>
+            <GroupBox x:Name="SanctionsBlue" Grid.Column="0" Header="Sanctions" HorizontalAlignment="Stretch" Margin="10,0,10,10" VerticalAlignment="Top" Foreground="#FF0B186C" FontSize="22" FontWeight="Bold" BorderBrush="#FF151A95">
+                <GroupBox.Effect>
+                    <DropShadowEffect Color="#FF163997" BlurRadius="10" ShadowDepth="10"/>
+                </GroupBox.Effect>
+                <Grid Margin="10,10,10,10" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Grid.ColumnSpan="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition  Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Button x:Name="buttonZBlue" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,0,10,0" ToolTip="Warning" Click="OnSanctionBlue">
+                        <StackPanel>
+                            <Label Content="Z"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="buttonIBlue" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,0,10,0" ToolTip="First Punishment" Click="OnSanctionBlue">
+                        <StackPanel>
+                            <Label Content="I"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="buttonIIBlue" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,0,10,0" ToolTip="Second Punishment" Click="OnSanctionBlue">
+                        <StackPanel>
+                            <Label Content="II"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="buttonDisBlue" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10,0,10,0" ToolTip="Discualification" Click="OnSanctionBlue">
+                        <StackPanel>
+                            <Label Content="DIS"/>
+                        </StackPanel>
+                    </Button>
+                </Grid>
+            </GroupBox>
         </StackPanel>
-        </Grid>
+    </Grid>
 </Window>

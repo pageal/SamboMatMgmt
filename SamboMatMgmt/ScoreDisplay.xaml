@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SamboMatMgmt"
         mc:Ignorable="d"
-        Title="ScoreDisplay" Height="396.85" Width="798.425">
+        Title="ScoreDisplay" Height="482.88" Width="1017.664"
+        Icon="pics/wcsf.jpg">
     <Grid>
         <Grid x:Name="ScoreGrid" Margin="10,10,10,10" HorizontalAlignment="Stretch">
             <Grid.ColumnDefinitions>
@@ -13,26 +14,66 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <Rectangle Grid.Column="0" Fill="#FFD31A1A" HorizontalAlignment="Stretch"/>
+            <Rectangle  Fill="#FFD31A1A" HorizontalAlignment="Stretch"/>
             <Rectangle Grid.Column="1" Fill="Black" HorizontalAlignment="Stretch"/>
             <Rectangle Grid.Column="2" Fill="#FF1414DC" HorizontalAlignment="Stretch"/>
-            <Label x:Name="CompetitorRed" Grid.Column="0" Content="{Binding CompetitorRedName}" HorizontalAlignment="Center" Margin="10,10,10,10" VerticalAlignment="Top" FontSize="48" FontWeight="Bold" FontStyle="Italic"/>
-            <Label x:Name="ScoreRed" Grid.Column="0" Content="{Binding ScoreRed}" FontSize="300" HorizontalAlignment="Center" Margin="0,50,0,0" VerticalAlignment="Center" Foreground="#FFF7F6F6" FontFamily="Arial Black" FontWeight="Bold" />
-            <StackPanel Grid.Column="0" VerticalAlignment="Bottom">
-                <Label x:Name="SpecialClockRed" Content="{Binding SpecialClockRed}" FontSize="96" HorizontalAlignment="Right" Margin="0,0,0,0"  Foreground="#FFF7F6F6" FontFamily="Arial" FontWeight="Bold" />
-                <Label x:Name="SpecialActionRed" Content="{Binding SpecialActionRed}" FontSize="96" HorizontalAlignment="Right" Margin="0,0,0,0" Foreground="#FFF7F6F6" FontFamily="Arial" FontWeight="Bold" />
+            <StackPanel Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                <Label x:Name="CompetitorRed" Grid.Column="0" Content="{Binding CompetitorRedName}" HorizontalAlignment="Center" Margin="10,10,0,10" VerticalAlignment="Top" FontSize="48" FontWeight="Bold" FontStyle="Italic"/>
+                <StackPanel Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Left">
+                    <Label x:Name="SpecialActionRed" Content="{Binding SpecialActionRed}" FontSize="48" HorizontalAlignment="Right" Margin="0,0,0,0" Foreground="#FFF7F6F6" FontFamily="Arial Black" FontWeight="Bold" />
+                    <Label x:Name="SpecialClockRed" Content="{Binding SpecialClockRed}" FontSize="72" HorizontalAlignment="Right" Margin="0,0,0,0"  Foreground="#FFF7F6F6" FontFamily="Arial Black" FontWeight="Bold" />
+                </StackPanel>
+                <Label x:Name="ScoreRed" Grid.Column="0" Content="{Binding ScoreRed}" FontSize="250" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Foreground="#FFF7F6F6" FontFamily="Arial Black" FontWeight="Bold" />
+                <Grid x:Name="BottomArea" Margin="10,10,10,10" HorizontalAlignment="Stretch" VerticalAlignment="Bottom">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Label x:Name="labelActivityRed" Grid.Column="0" HorizontalAlignment="Stretch" FontSize="52"  Margin="10,0,0,0" Content="A:" VerticalAlignment="Center" FontWeight="Bold"/>
+                    <Label x:Name="labelActivityCountRed" Grid.Column="1" HorizontalAlignment="Left" FontSize="52"  Margin="0,0,10,0" Content="{Binding ActivityRed}" VerticalAlignment="Center" FontWeight="Bold" />
+                    <Label x:Name="SanctionZRed" Grid.Column="3" HorizontalAlignment="Left" FontSize="52"  Margin="0,0,10,0" Content="{Binding SanctionZRed}" VerticalAlignment="Center" FontWeight="Bold" Foreground="Yellow"/>
+                    <Label x:Name="SanctionIRed" Grid.Column="4" HorizontalAlignment="Left" FontSize="52"  Margin="0,0,10,0" Content="{Binding SanctionIRed}" VerticalAlignment="Center" FontWeight="Bold" Foreground="Yellow"/>
+                    <Label x:Name="SanctionIIRed" Grid.Column="5" HorizontalAlignment="Left" FontSize="52"  Margin="0,0,10,0" Content="{Binding SanctionIIRed}" VerticalAlignment="Center" FontWeight="Bold" Foreground="Yellow"/>
+                    <Label x:Name="SanctionDisRed" Grid.Column="6" HorizontalAlignment="Left" FontSize="52"  Margin="0,0,10,0" Content="{Binding SanctionDisRed}" VerticalAlignment="Center" FontWeight="Bold" Foreground="Yellow"/>
+                </Grid>
             </StackPanel>
 
             <StackPanel Grid.Column="1" VerticalAlignment="Stretch">
                 <Label x:Name="lblWeight" Content="{Binding Weight}" FontSize="72" HorizontalAlignment="Center" Margin="10,10,0,10" VerticalAlignment="Top" Foreground="#FFF7F6F6" FontFamily="Arial Black" FontWeight="Bold" />
                 <Label x:Name="lblTime" Content="{Binding FightClock}" FontSize="150" HorizontalAlignment="Center" Margin="10,10,0,10" VerticalAlignment="Center" Foreground="#FFF7F6F6" FontFamily="Arial Black" FontWeight="Bold" />
             </StackPanel>
+            <Image Source="pics/wcsf.jpg" Grid.Column="1" HorizontalAlignment="Left" Height="200" Margin="0,0,0,0" VerticalAlignment="Bottom" Width="200"/>
+            <Image Source="pics/massa_logo_200.jpg" Grid.Column="1" HorizontalAlignment="Right" Height="200" Margin="0,0,0,0" VerticalAlignment="Bottom" Width="200"/>
 
-            <Label x:Name="CompetitorBlue" Grid.Column="2" Content="{Binding CompetitorBlueName}" HorizontalAlignment="Center" Margin="10,10,10,10" VerticalAlignment="Top" FontSize="48" FontWeight="Bold" FontStyle="Italic"/>
-            <Label x:Name="ScoreBlue" Grid.Column="2" Content="{Binding ScoreBlue}" FontSize="300" HorizontalAlignment="Center" Margin="0,50,0,0" VerticalAlignment="Center" Foreground="#FFF7F6F6" FontFamily="Arial Black" FontWeight="Bold" />
-            <StackPanel Grid.Column="2" VerticalAlignment="Bottom">
-                <Label x:Name="SpecialClockBlue" Content="{Binding SpecialClockBlue}" HorizontalAlignment="Left" FontSize="96" Margin="0,0,0,0" FontFamily="Arial" FontWeight="Bold" Foreground="#FFF7F6F6"/>
-                <Label x:Name="SpecialActionBlue" Content="{Binding SpecialActionBlue}" HorizontalAlignment="Left" FontSize="96" Margin="0,0,0,0" FontFamily="Arial" FontWeight="Bold" Foreground="#FFF7F6F6"/>
+            <StackPanel Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                <Label x:Name="CompetitorBlue" Grid.Column="2" Content="{Binding CompetitorBlueName}" HorizontalAlignment="Center" Margin="10,10,0,10" VerticalAlignment="Top" FontSize="48" FontWeight="Bold" FontStyle="Italic"/>
+                <StackPanel Grid.Column="2" VerticalAlignment="Top" HorizontalAlignment="Right">
+                    <Label x:Name="SpecialActionBlue" Content="{Binding SpecialActionBlue}" HorizontalAlignment="Left" FontSize="48" Margin="0,0,0,0" FontFamily="Arial Black" FontWeight="Bold" Foreground="#FFF7F6F6"/>
+                    <Label x:Name="SpecialClockBlue" Content="{Binding SpecialClockBlue}" HorizontalAlignment="Left" FontSize="72" Margin="0,0,0,0" FontFamily="Arial Black" FontWeight="Bold" Foreground="#FFF7F6F6"/>
+                </StackPanel>
+                <Label x:Name="ScoreBlue" Grid.Column="2" Content="{Binding ScoreBlue}" FontSize="250" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center" Foreground="#FFF7F6F6" FontFamily="Arial Black" FontWeight="Bold" />
+                <Grid x:Name="BottomAreaBlue" Margin="10,10,10,10" HorizontalAlignment="Stretch" VerticalAlignment="Bottom">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Label x:Name="labelActivityBlue" Grid.Column="0" HorizontalAlignment="Stretch" FontSize="52"  Margin="10,0,0,0" Content="A:" VerticalAlignment="Center" FontWeight="Bold"/>
+                    <Label x:Name="labelActivityCountBlue" Grid.Column="1" HorizontalAlignment="Left" FontSize="52"  Margin="0,0,10,0" Content="{Binding ActivityBlue}" VerticalAlignment="Center" FontWeight="Bold" />
+                    <Label x:Name="SanctionZBlue" Grid.Column="3" HorizontalAlignment="Left" FontSize="52"  Margin="0,0,10,0" Content="{Binding SanctionZBlue}" VerticalAlignment="Center" FontWeight="Bold" Foreground="Yellow"/>
+                    <Label x:Name="SanctionIBlue" Grid.Column="4" HorizontalAlignment="Left" FontSize="52"  Margin="0,0,10,0" Content="{Binding SanctionIBlue}" VerticalAlignment="Center" FontWeight="Bold" Foreground="Yellow"/>
+                    <Label x:Name="SanctionIIBlue" Grid.Column="5" HorizontalAlignment="Left" FontSize="52"  Margin="0,0,10,0" Content="{Binding SanctionIIBlue}" VerticalAlignment="Center" FontWeight="Bold" Foreground="Yellow"/>
+                    <Label x:Name="SanctionDisBlue" Grid.Column="6" HorizontalAlignment="Left" FontSize="52"  Margin="0,0,10,0" Content="{Binding SanctionDisBlue}" VerticalAlignment="Center" FontWeight="Bold" Foreground="Yellow"/>
+                </Grid>
             </StackPanel>
         </Grid>
     </Grid>

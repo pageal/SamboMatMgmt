@@ -32,13 +32,22 @@ namespace SamboMatMgmt
     {
         private DateTime    _the_time = new DateTime(0);
         private long   _FightLen;
-        private string _Weight;
-        private string _current_fight_time;
-        private string _special_clock_red;
-        private string _special_action_red;
-        private string _special_clock_blue;
-        private string _special_action_blue;
-
+        private string _Weight = "";
+        private string _current_fight_time = "";
+        private string _special_clock_red = "";
+        private string _special_action_red = "";
+        private string _special_clock_blue = "";
+        private string _special_action_blue = "";
+        private string _activity_red = "";
+        private string _activity_blue = "";
+        private string _sanction_z_red = " ";
+        private string _sanction_i_red = " ";
+        private string _sanction_ii_red = "  ";
+        private string _sanction_dis_red = "   ";
+        private string _sanction_z_blue = " ";
+        private string _sanction_i_blue = " ";
+        private string _sanction_ii_blue = "  ";
+        private string _sanction_dis_blue = "   ";
 
         //CompetitorRed
         private String  _CompetitorRedName = "";
@@ -105,6 +114,26 @@ namespace SamboMatMgmt
             }
         }
 
+        public string ActivityRed
+        {
+            get { return _activity_red; }
+            set
+            {
+                _activity_red = value;
+                OnPropertyChanged("ActivityRed");
+            }
+        }
+
+        public string ActivityBlue
+        {
+            get { return _activity_blue.ToString(); }
+            set
+            {
+                _activity_blue = value;
+                OnPropertyChanged("ActivityBlue");
+            }
+        }
+
         public string SpecialActionRed
         {
             get { return _special_action_red; }
@@ -112,6 +141,85 @@ namespace SamboMatMgmt
             {
                 _special_action_red = value;
                 OnPropertyChanged("SpecialActionRed");
+            }
+        }
+
+        public string SanctionZRed
+        {
+            get { return _sanction_z_red; }
+            set
+            {
+                _sanction_z_red = value;
+                OnPropertyChanged("SanctionZRed");
+            }
+        }
+
+        public string SanctionZBlue
+        {
+            get { return _sanction_z_blue; }
+            set
+            {
+                _sanction_z_blue = value;
+                OnPropertyChanged("SanctionZBlue");
+            }
+        }
+
+        public string SanctionIRed
+        {
+            get { return _sanction_i_red; }
+            set
+            {
+                _sanction_i_red = value;
+                OnPropertyChanged("SanctionIRed");
+            }
+        }
+        public string SanctionIBlue
+        {
+            get { return _sanction_i_blue; }
+            set
+            {
+                _sanction_i_blue = value;
+                OnPropertyChanged("SanctionIBlue");
+            }
+        }
+
+        public string SanctionIIRed
+        {
+            get { return _sanction_ii_red; }
+            set
+            {
+                _sanction_ii_red = value;
+                OnPropertyChanged("SanctionIIRed");
+            }
+        }
+
+        public string SanctionIIBlue
+        {
+            get { return _sanction_ii_blue; }
+            set
+            {
+                _sanction_ii_blue = value;
+                OnPropertyChanged("SanctionIIBlue");
+            }
+        }
+
+        public string SanctionDisRed
+        {
+            get { return _sanction_dis_red; }
+            set
+            {
+                _sanction_dis_red = value;
+                OnPropertyChanged("SanctionDisRed");
+            }
+        }
+
+        public string SanctionDisBlue
+        {
+            get { return _sanction_dis_blue; }
+            set
+            {
+                _sanction_dis_blue = value;
+                OnPropertyChanged("SanctionDisBlue");
             }
         }
 
@@ -175,6 +283,17 @@ namespace SamboMatMgmt
             }
         }
 
+        public void ResetSanctions()
+        {
+            SanctionZRed = " ";
+            SanctionIRed = " ";
+            SanctionIIRed = "  ";
+            SanctionDisRed = "   ";
+            SanctionZBlue = " ";
+            SanctionIBlue = " ";
+            SanctionIIBlue = "  ";
+            SanctionDisBlue = "   ";
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(string propertyName)
